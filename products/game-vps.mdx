@@ -1,0 +1,114 @@
+---
+title: "Game VPS for FiveM and txAdmin"
+description: "Launch a managed Windows gaming VPS preconfigured with FiveM and txAdmin on IONOS, with plans, regions, RDP access, and pricing details."
+---
+
+Game VPS is a managed Windows virtual private server tuned for hosting FiveM
+roleplay and community servers. Each Game VPS is provisioned on IONOS and ships
+with FiveM and the txAdmin web panel already installed, so you can boot a
+server, share the connection info, and start playing the same day.
+
+Use Game VPS when you want a turnkey FiveM host without manually configuring
+Windows, opening firewall ports, or installing the FiveM artifacts yourself.
+
+## What you get
+
+Every Game VPS includes:
+
+- A Windows Server VM provisioned in the IONOS region you choose.
+- Preinstalled FiveM server and the txAdmin web panel.
+- A public IPv4 address with RDP (`3389`), FiveM (`30120`), and txAdmin
+  (`40120`) reachable from the internet.
+- Auto-generated RDP and txAdmin passwords surfaced in the dashboard.
+- Per-second billing at the plan's hourly rate.
+
+## Plans
+
+Pick a plan based on the size of your community. You can change plans by
+deleting the server and creating a new one.
+
+| Plan      | Best for                  | vCPU | RAM    | Disk     | Price       |
+| --------- | ------------------------- | ---- | ------ | -------- | ----------- |
+| Starter   | Entry Windows VPS         | 2    | 4 GB   | 80 GB    | $4.99/mo    |
+| Community | Growing FiveM server      | 4    | 8 GB   | 160 GB   | $8.99/mo    |
+| Growth    | Busy game community       | 8    | 16 GB  | 320 GB   | $14.99/mo   |
+| Serious   | High-capacity roleplay    | 16   | 32 GB  | 640 GB   | $29.99/mo   |
+
+Prices are billed by the second; the monthly figure assumes a 730-hour month.
+
+## Locations
+
+Game VPS is available in the following IONOS regions:
+
+- Frankfurt, Germany (`de/fra`)
+- London, United Kingdom (`gb/lhr`)
+- Las Vegas, United States (`us/las`)
+- Newark, United States (`us/ewr`)
+
+Pick the region closest to the majority of your players to minimize latency.
+
+## Prerequisites
+
+Before you create a Game VPS, you need:
+
+- A LayerRail project with a valid payment method on file.
+- The `Vm:create` permission in that project.
+
+## Launch a Game VPS
+
+<Steps>
+  <Step title="Open Game VPS">
+    In the dashboard, open your project and choose **Game VPS** from the
+    sidebar.
+  </Step>
+  <Step title="Start a new server">
+    Click **Create Game VPS**.
+  </Step>
+  <Step title="Configure the server">
+    Fill in the form:
+
+    - **Name** — lowercase letters, numbers, and hyphens (for example,
+      `fivem-rp-1`).
+    - **Location** — the IONOS region to deploy in.
+    - **Plan** — the size that fits your community.
+    - **Windows image alias** — leave the default unless you need a specific
+      IONOS Windows image.
+  </Step>
+  <Step title="Create">
+    Submit the form. The server provisions in a few minutes. The list view
+    auto-refreshes and the state moves from `creating` to `running` once it is
+    ready.
+  </Step>
+</Steps>
+
+## Connect to your server
+
+Open the server's detail page from the **Game VPS** list. You will see three
+panels:
+
+- **Server** — plan, price, location, and resources.
+- **Access** — public IP address, RDP username (`Administrator`), RDP
+  password, and txAdmin password. Passwords are hidden by default and can be
+  revealed or copied.
+- **IONOS** — the underlying IONOS datacenter ID, server ID, image, and the
+  exposed ports (`3389`, `30120`, `40120`).
+
+To connect:
+
+- **RDP** — use any Remote Desktop client with the public IP, the
+  `Administrator` user, and the RDP password from the dashboard.
+- **txAdmin** — open `http://<public-ip>:40120` in a browser and sign in with
+  the txAdmin password shown in the dashboard.
+- **FiveM** — share `<public-ip>:30120` (or your custom domain pointing at the
+  IP) with your players.
+
+## Delete a Game VPS
+
+When you no longer need the server, open its detail page and click **Delete**.
+You will be prompted to type the server name to confirm. Deletion tears down
+the IONOS virtual data center and the server, and billing stops immediately.
+
+<Warning>
+  Deleting a Game VPS is permanent. Back up any FiveM resources, databases, or
+  configuration you want to keep before deleting the server.
+</Warning>

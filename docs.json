@@ -9,7 +9,7 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "pages": ["index", "quickstart"],
+    "pages": ["index", "quickstart", "products/game-vps"],
     "global": {
       "anchors": [
         {
