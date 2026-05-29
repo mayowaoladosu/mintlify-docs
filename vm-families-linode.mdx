@@ -1,0 +1,64 @@
+---
+title: "Linode VM families"
+description: "Compare Linode VM families — Shared CPU Starter (Nanode), Shared CPU, Dedicated CPU, and Premium — to pick the right size for your workload."
+---
+
+When you create a VM in a Linode region, the size picker groups options into **families**. Each family corresponds to a different class of underlying Linode plan, with different performance characteristics and pricing. Use this page to decide which family fits your workload before picking a specific size.
+
+## Available families
+
+The dashboard exposes four families in Linode regions (Frankfurt, US East, US LAX, US Sea):
+
+| Family | Backed by | CPU behavior | Best for |
+| --- | --- | --- | --- |
+| Shared CPU Starter | Linode Nanode and Shared plans | Burstable | Hobby projects, dev/test, low-traffic sites |
+| Shared CPU | Linode Shared plans | Burstable | Bursty workloads that can tolerate noisy neighbors |
+| Dedicated CPU | Linode Dedicated plans | Sustained, 100% allocation | Production apps, CI runners, databases |
+| Dedicated Premium CPU | Linode Premium plans | Sustained on newer hardware | Latency-sensitive production workloads |
+
+### Shared CPU Starter
+
+The Shared CPU Starter family is the lowest-cost tier and the entry point for trying out a Linode VM. It's backed by Linode Nanode and Shared plans, runs on shared physical cores, and is allowed to burst above its baseline CPU allocation when capacity is available.
+
+Available sizes:
+
+| Size | vCPUs | Memory | Disk |
+| --- | --- | --- | --- |
+| `nanode-1` | 1 | 1 GB | 25 GB |
+| `nanode-2` | 1 | 2 GB | 50 GB |
+| `nanode-4` | 2 | 4 GB | 80 GB |
+| `nanode-8` | 4 | 8 GB | 160 GB |
+
+Pricing starts at $5/month for `nanode-1`. Disk size is fixed per size — you cannot attach a custom storage size to a Starter VM.
+
+Use Shared CPU Starter when:
+
+- You're prototyping or running a side project.
+- You need a cheap always-on VM for a small service, bot, or static site.
+- Sustained CPU usage is low and occasional bursts are acceptable.
+
+Avoid Shared CPU Starter when you need GPUs (not supported), guaranteed CPU performance, or large storage volumes.
+
+### Shared CPU
+
+Shared CPU sizes are also burstable and run on shared cores, but offer larger memory and disk options than the Starter tier and let you attach a configurable storage volume. Pick Shared CPU when a Starter size is too small but your workload still tolerates burstable CPU.
+
+### Dedicated CPU
+
+Dedicated CPU sizes give you 100% of the allocated vCPUs at all times, with no bursting and no noisy-neighbor contention. This is the right family for production web servers, application servers, CI workers, and databases that need predictable performance.
+
+### Dedicated Premium CPU
+
+Dedicated Premium CPU offers the same dedicated allocation as Dedicated CPU, on a newer generation of hardware. Choose Premium for latency-sensitive workloads where every bit of CPU performance matters.
+
+## Choosing a size
+
+1. Pick a family based on the workload guidance above.
+2. Pick a size within that family that has enough vCPUs and memory for your peak load.
+3. For families other than Shared CPU Starter, pick a storage size.
+
+If you're unsure, start with a Shared CPU Starter size to validate your setup, then move to Dedicated CPU once you have a feel for your real CPU and memory usage.
+
+## GPU support
+
+GPU attachment is only available on **Dedicated CPU** sizes, and only in the `linode-de-fra-2` and `linode-us-sea` regions. Shared CPU Starter and Shared CPU families do not support GPUs.
