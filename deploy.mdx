@@ -1,0 +1,89 @@
+---
+title: "LayerRail Deploy"
+description: "Deploy a GitHub repository to a LayerRail-managed runtime in a few clicks"
+---
+
+LayerRail Deploy is a Git-connected application platform. You point it at a branch in a GitHub repository, pick a runtime, and LayerRail provisions a managed VM, builds your app, and serves it from a public hostname.
+
+Use LayerRail Deploy when you want to ship a Node.js service or a static site without managing the underlying VM yourself.
+
+## Prerequisites
+
+Before you create your first app, make sure your project has:
+
+- A **connected GitHub App installation** for the account or organization that owns the repository you want to deploy. Set this up under **GitHub** in your project sidebar.
+- A **valid payment method** on file. Billing verification is required before LayerRail will provision a runtime.
+
+## Create an app
+
+<Steps>
+  <Step title="Open LayerRail Deploy">
+    In your project sidebar, open **Deploy** and select **New Deploy App**.
+
+    If you have not connected GitHub yet, the page links you to the GitHub connection flow first.
+  </Step>
+  <Step title="Pick a repository and branch">
+    Choose the GitHub account, enter the repository in `owner/repository` form, and set the branch to deploy from (defaults to `main`).
+  </Step>
+  <Step title="Configure the build">
+    Select a **Runtime** (Node.js or Static site) and fill in the build fields described in [Configuration fields](#configuration-fields). Defaults assume an npm-based project.
+  </Step>
+  <Step title="Create the app">
+    Submit the form. LayerRail provisions a runtime, clones the branch, runs your install and build commands, and starts the app. The app row will move from `provisioning` to `deploying` to `live` as it progresses.
+  </Step>
+</Steps>
+
+Once the app is `live`, it is reachable at its public URL:
+
+```
+https://<app-name>-<id>.apps.layerrail.com
+```
+
+The hostname is generated when the app is created and shown on the app's detail page. You cannot rename an app to change its hostname.
+
+## Configuration fields
+
+| Field | Description | Default |
+| --- | --- | --- |
+| **App name** | Lowercase letters, numbers, and hyphens. Used in the public hostname. | — |
+| **GitHub account** | A connected GitHub App installation that has access to the repository. | — |
+| **Repository** | The repository to deploy, in `owner/repository` form. | — |
+| **Branch** | The branch LayerRail clones for every deployment. | `main` |
+| **Runtime** | `Node.js` for long-running servers or `Static site` for prebuilt static output. | `Node.js` |
+| **App port** | Port the running app listens on. LayerRail routes the public hostname to this port. | `3000` |
+| **Root directory** | Subdirectory of the repository to treat as the project root. Leave empty for the repository root. Must be relative. | repository root |
+| **Static output directory** | For static sites, the directory (relative to the root directory) that contains the built output to serve. | — |
+| **Install command** | Command run to install dependencies before the build. | `npm install` |
+| **Build command** | Command run after install. Leave blank to skip the build step. | `npm run build` |
+| **Start command** | Command used to start the app for the Node.js runtime. | `npm start` |
+
+By default, LayerRail Deploy is fully managed: location and runtime size are chosen for you. If your project has infrastructure controls enabled, the create form also shows **Location** and **Runtime size** selectors so you can pin an app to a specific region and VM size.
+
+## Environment variables
+
+Environment variables are injected into your build and runtime processes. To add one, open the app's detail page, scroll to **Environment**, and submit a key/value pair.
+
+- Keys are normalized to uppercase (for example, `database_url` becomes `DATABASE_URL`).
+- Saving an existing key updates its value.
+- Use the **Delete** button next to a variable to remove it.
+
+Variable changes take effect on the next deployment. Trigger a redeploy after editing variables if you want them applied immediately.
+
+```bash
+# Example: a Node.js app reading variables at runtime
+DATABASE_URL=postgres://user:pass@host:5432/db
+NODE_ENV=production
+```
+
+## Redeploy an app
+
+LayerRail builds and starts your app automatically when you create it. To rebuild from the latest commit on the configured branch:
+
+1. Open the app from **Deploy**.
+2. Choose **Deploy**.
+
+The button is hidden while a deployment is already `queued`, `provisioning`, or `building`. The **Deployments** table on the app page lists recent deployments with their trigger, state, and finish time. The latest deployment log is rendered at the bottom of the page.
+
+## Delete an app
+
+From the app's detail page, choose **Delete** and confirm with the app name. Deletion tears down the managed runtime that backs the app, along with its environment variables and deployment history. The public hostname is released and cannot be reclaimed.
