@@ -15,7 +15,8 @@
       {
         "group": "AI inference",
         "pages": ["ai-inference/overview", "ai-inference/playground"]
-      }
+      },
+      "changelog"
     ],
     "global": {
       "anchors": [
