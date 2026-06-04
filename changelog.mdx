@@ -1,0 +1,34 @@
+---
+title: "LayerRail changelog"
+description: "Weekly release notes for LayerRail: new features, product updates, and bug fixes across AI inference, the playground, and more."
+---
+
+<Update label="June 4, 2026" tags={["AI inference"]}>
+
+## New features
+
+**Searchable model catalog** — The Inference tab opens on a catalog of every text generation and embedding endpoint available to your project. Filter by capability, search by name, provider, or model id, and copy the project base URL with one click. [Learn more](/ai-inference/overview)
+
+**Inference playground** — A new in-product chat UI for testing any text generation endpoint. Pick a model and API key, iterate on prompts, and jump straight in from a catalog card with **Open in playground**. [Learn more](/ai-inference/playground)
+
+**Prompt templates** — Seed the playground system message with a starting point for common tasks: **Blank chat**, **Summarize text**, **Classify request**, **Return JSON**, and **Explain code**. [Learn more](/ai-inference/playground#use-a-prompt-template)
+
+**Session usage and cost tracking** — A **Session usage** side panel in the playground reports last-request tokens, running session totals, estimated session cost based on the selected model's pricing, and remaining free quota. [Learn more](/ai-inference/playground#track-usage-and-cost)
+
+**Selected model side panel** — A reference panel in the playground mirrors the catalog card for the active endpoint — provider, capability, context length, pricing, and endpoint URL — so you can iterate without leaving the page. [Learn more](/ai-inference/playground#selected-model-panel)
+
+## Updates
+
+**Richer model cards** — Each catalog card now shows context length, modalities, streaming support, input and output pricing per 1M tokens, copyable endpoint URL and model id, and a ready-to-run curl example. [Learn more](/ai-inference/overview#read-a-model-card)
+
+**Catalog summary stats** — The top of the Inference tab summarizes available models, text generation endpoints, embedding endpoints, and remaining free quota at a glance. [Learn more](/ai-inference/overview#find-a-model-in-the-catalog)
+
+**Response format selector** — Choose **Auto** for free-form text or **JSON object** to force structured output. The **Return JSON** template switches this for you. [Learn more](/ai-inference/playground#advanced-settings)
+
+**Max output tokens** — Cap response length from the playground, or leave blank to use the model's default. [Learn more](/ai-inference/playground#advanced-settings)
+
+**Finer sampling controls** — Temperature steps in increments of `0.1` (range `0.0`–`2.0`) and Top P in increments of `0.05` (range `0.0`–`1.0`) for more precise tuning. [Learn more](/ai-inference/playground#advanced-settings)
+
+**File attachments in the playground** — Upload `.jpg`, `.jpeg`, `.png`, or `.pdf` files when calling multimodal endpoints. [Learn more](/ai-inference/playground#send-a-message)
+
+</Update>
