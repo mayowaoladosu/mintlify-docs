@@ -9,7 +9,14 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "pages": ["index", "quickstart"],
+    "pages": [
+      "index",
+      "quickstart",
+      {
+        "group": "AI inference",
+        "pages": ["ai-inference/overview", "ai-inference/playground"]
+      }
+    ],
     "global": {
       "anchors": [
         {

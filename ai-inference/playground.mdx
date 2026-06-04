@@ -1,0 +1,71 @@
+---
+title: "Inference playground"
+description: "Test prompts against any text generation endpoint, tune temperature, top_p, and response format, and track per-session token usage and cost."
+---
+
+The inference playground is an in-product chat UI for any text generation endpoint in your project's catalog. Use it to test prompts, compare models, and see token usage and cost before integrating an endpoint into application code.
+
+Open it from the **Playground** tab on the Inference page, or click **Open in playground** on a text generation model card.
+
+## Pick an endpoint and API key
+
+At the top of the playground you choose what to call:
+
+- **Inference Endpoint** — any text generation model in your catalog. Switching endpoints updates the **Selected model** side panel with the model's provider, capability, context length, pricing, and endpoint URL.
+- **Inference API Key** — one of your project's inference API keys. The key is attached to every request you send from the playground.
+
+If your project has no inference API keys yet, the playground prompts you to create one before sending a request.
+
+## Use a prompt template
+
+The **Prompt template** dropdown seeds the system message and (when relevant) the response format with a starting point for common tasks:
+
+| Template | When to use |
+| --- | --- |
+| **Blank chat** | Start from scratch with no system message. |
+| **Summarize text** | Ask the model to produce a short summary of pasted content. |
+| **Classify request** | Route or label an input into one of a fixed set of categories. |
+| **Return JSON** | Force structured output — also switches the response format to `JSON object`. |
+| **Explain code** | Walk through a code snippet and explain what it does. |
+
+You can edit the system message and the user prompt after picking a template — templates are starting points, not locks.
+
+## Advanced settings
+
+Select **Show advanced settings** to expose request-shaping controls. Leave a field blank to fall back to the model's default.
+
+- **Temperature** — randomness. Range `0.0`–`2.0`, step `0.1`. Lower values produce more deterministic output; higher values are more creative.
+- **Top P** — nucleus sampling cutoff. Range `0.0`–`1.0`, step `0.05`. Lower values restrict the model to higher-probability tokens.
+- **Max output tokens** — caps the length of the generated response. Leave blank for **Auto** (the model's default limit).
+- **Response format** — **Auto** lets the model reply with free-form text; **JSON object** instructs the model to return a valid JSON object. Pair this with a system message that describes the expected schema.
+- **System Message** — sets the assistant's role and behavior for every turn in the session.
+
+## Send a message
+
+1. (Optional) Attach files in the **Upload files** input. Supported types: `.jpg`, `.jpeg`, `.png`, `.pdf`. File attachments are only meaningful on multimodal endpoints — check the **Modalities** field on the model card.
+2. Type a prompt into **New Message**.
+3. Click **Submit**.
+
+Each turn appears in **Previous Messages** above the input. Click **Start a new chat** to clear the history and start a fresh session — the side-panel usage counters reset at the same time.
+
+## Track usage and cost
+
+The right-hand **Session usage** panel updates after every request so you can size cost before going to production:
+
+- **Last request** — input and output tokens reported for the most recent response.
+- **Session total** — running input and output token totals for every request in the current chat.
+- **Estimated session cost** — the session totals multiplied by the selected model's per-million-token pricing.
+- **Free quota remaining** — inference tokens still available on the project's free allowance.
+
+Starting a new chat resets the session counters; switching models updates the pricing used for the cost estimate.
+
+## Selected model panel
+
+The **Selected model** side panel mirrors the most important fields from the catalog card for the endpoint currently chosen in the dropdown:
+
+- Display name and provider
+- Capability and context length
+- Pricing (input and output per 1M tokens)
+- Full endpoint URL
+
+Use it as a quick reference while you iterate on prompts without flipping back to the catalog.
