@@ -1,6 +1,6 @@
 ---
 title: "Inference playground"
-description: "Send chat requests to any text generation endpoint and watch usage update in real time."
+description: "Test prompts against any text generation endpoint, tune temperature, top_p, and response format, and track per-session token usage and cost."
 ---
 
 The inference playground is an in-product chat UI for any text generation endpoint in your project's catalog. Use it to test prompts, compare models, and see token usage and cost before integrating an endpoint into application code.
@@ -32,7 +32,7 @@ You can edit the system message and the user prompt after picking a template —
 
 ## Advanced settings
 
-Tick **Show advanced settings** to expose request-shaping controls. Leave a field blank to fall back to the model's default.
+Select **Show advanced settings** to expose request-shaping controls. Leave a field blank to fall back to the model's default.
 
 - **Temperature** — randomness. Range `0.0`–`2.0`, step `0.1`. Lower values produce more deterministic output; higher values are more creative.
 - **Top P** — nucleus sampling cutoff. Range `0.0`–`1.0`, step `0.05`. Lower values restrict the model to higher-probability tokens.
