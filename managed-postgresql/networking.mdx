@@ -1,0 +1,37 @@
+---
+title: "Networking"
+description: "Control how applications reach LayerRail PostgreSQL."
+---
+
+PostgreSQL access should be limited to the services that need it.
+
+LayerRail databases can be used with project networking, firewall rules, and service hostnames.
+
+## Recommended layout
+
+Use this layout for production:
+
+1. Place the application and database in the same or nearby location.
+2. Prefer private connectivity when possible.
+3. Restrict public access with firewall rules.
+4. Rotate credentials when access changes.
+
+## Application access
+
+Applications usually connect by setting `DATABASE_URL`.
+
+```bash
+DATABASE_URL="postgresql://<user>:<password>@<host>:5432/<database>?sslmode=require"
+```
+
+## Firewall checklist
+
+- Allow only trusted source IPs or private network ranges.
+- Keep administrative access separate from application access.
+- Remove temporary rules after debugging.
+- Avoid broad `0.0.0.0/0` access for production databases.
+
+<Tip>
+  Put app servers, worker VMs, and databases in the same project so access and audit trails stay easier to reason about.
+</Tip>
+

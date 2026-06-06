@@ -1,0 +1,48 @@
+---
+title: "Expose an application using TLS"
+description: "Expose a Kubernetes workload with a secure public endpoint."
+---
+
+Use TLS when a Kubernetes service receives traffic from browsers, API clients, webhooks, or external systems.
+
+## Recommended flow
+
+<Steps>
+  <Step title="Deploy the application">
+    Deploy your workload and confirm the pods are healthy.
+  </Step>
+  <Step title="Create a service">
+    Expose the deployment with a service.
+  </Step>
+  <Step title="Attach a hostname">
+    Use the service hostname created by LayerRail or point a custom DNS record at the load balancer.
+  </Step>
+  <Step title="Enable TLS">
+    Use your ingress controller or certificate manager to request and renew certificates.
+  </Step>
+</Steps>
+
+## Example service
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+spec:
+  type: LoadBalancer
+  selector:
+    app: web
+  ports:
+    - port: 80
+      targetPort: 3000
+```
+
+## Certificate management
+
+You can use standard Kubernetes tooling such as cert-manager when your cluster is configured for public DNS validation or HTTP validation.
+
+<Info>
+  Service hostnames under LayerRail-managed domains can show a waiting page until an application is attached and serving traffic.
+</Info>
+

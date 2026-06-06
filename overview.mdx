@@ -1,0 +1,65 @@
+---
+title: "Overview"
+description: "What LayerRail is, how the console is organized, and where to begin."
+---
+
+LayerRail gives startups, developers, and teams a clear way to run cloud infrastructure without hiding every operational detail behind a black box.
+
+The console is organized around projects. A project contains the infrastructure for one product, customer environment, team, or workload.
+
+## Services
+
+<CardGroup cols={2}>
+  <Card title="Virtual machines" icon="server" href="/virtual-machines/overview">
+    General purpose compute for apps, services, workers, and custom infrastructure.
+  </Card>
+  <Card title="Managed PostgreSQL" icon="database" href="/managed-postgresql/overview">
+    PostgreSQL instances with connection details, networking controls, and operational visibility.
+  </Card>
+  <Card title="Managed Kubernetes" icon="cubes" href="/managed-kubernetes/overview">
+    Kubernetes clusters for container workloads and team deployment flows.
+  </Card>
+  <Card title="Networking" icon="network-wired" href="/networking/load-balancer">
+    Private subnets, firewalls, public IPs, service hostnames, and load balancers.
+  </Card>
+  <Card title="GitHub runners" icon="github" href="/github-actions-integration/quickstart">
+    On-demand runner infrastructure for GitHub Actions workflows.
+  </Card>
+  <Card title="AI inference" icon="sparkles" href="/ai-inference/overview">
+    Project-scoped model endpoints, API keys, and a playground for testing prompts.
+  </Card>
+</CardGroup>
+
+## Console model
+
+LayerRail uses a few core objects across the platform:
+
+| Object | Purpose |
+| --- | --- |
+| Account | Your identity and login methods. |
+| Project | A boundary for resources, billing, access, and audit logs. |
+| Location | The region where infrastructure is provisioned. |
+| Resource | A VM, database, cluster, subnet, firewall, load balancer, or runner. |
+| API token | A personal access token used to call the LayerRail API. |
+
+## Where to start
+
+<Steps>
+  <Step title="Create or open a project">
+    Sign in to the [LayerRail console](https://console.layerrail.com) and open the project where you want to work.
+  </Step>
+  <Step title="Choose a first service">
+    Start with [Virtual machines](/virtual-machines/quickstart) if you need direct compute, [Managed PostgreSQL](/managed-postgresql/overview) if you need a database, or [Kubernetes](/managed-kubernetes/quickstart) if you are deploying containers.
+  </Step>
+  <Step title="Add networking">
+    Use private subnets, firewalls, and load balancers when the service needs controlled access or a public endpoint.
+  </Step>
+  <Step title="Automate later">
+    When the workflow is stable, create a personal access token and move repeated actions into scripts or CI.
+  </Step>
+</Steps>
+
+<Info>
+  LayerRail currently focuses on practical cloud primitives: compute, PostgreSQL, Kubernetes, networking, runners, and inference. App deployment documentation will be added as that product surface is finalized.
+</Info>
+

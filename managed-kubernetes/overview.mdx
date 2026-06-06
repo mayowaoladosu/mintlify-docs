@@ -1,0 +1,42 @@
+---
+title: "Overview"
+description: "Run container workloads with LayerRail Kubernetes clusters."
+---
+
+LayerRail Kubernetes clusters, also called LKS, give your project a managed control plane and worker nodes for container workloads.
+
+Use LKS when your application needs deployments, services, rolling updates, cluster networking, and Kubernetes-native tooling.
+
+## Cluster model
+
+| Component | Purpose |
+| --- | --- |
+| Control plane | Runs the Kubernetes API and control components. |
+| Worker nodes | Run application pods. |
+| Node pools | Group workers with the same size and role. |
+| Kubeconfig | Lets `kubectl` authenticate to the cluster. |
+| Load balancers | Expose workloads outside the cluster. |
+
+## Common use cases
+
+- Multi-service applications.
+- APIs and worker deployments.
+- Internal platforms.
+- CI/CD environments.
+- Self-hosted tools.
+
+## Limitations
+
+Cluster capabilities depend on the selected location, available VM sizes, and current LayerRail Kubernetes support.
+
+<Info>
+  Start with one worker node for development. Add nodes when workloads or availability needs grow.
+</Info>
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="rocket" href="/managed-kubernetes/quickstart" />
+  <Card title="Resize a cluster" icon="up-right-and-down-left-from-center" href="/managed-kubernetes/resize-cluster" />
+  <Card title="Expose with TLS" icon="lock" href="/managed-kubernetes/expose-application-using-tls" />
+  <Card title="Load balancers" icon="network-wired" href="/networking/load-balancer" />
+</CardGroup>
+

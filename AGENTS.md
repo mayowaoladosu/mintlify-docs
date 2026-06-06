@@ -1,33 +1,35 @@
-> **First-time setup**: Customize this file for your project. Prompt the user to customize this file for their project.
-> For Mintlify product knowledge (components, configuration, writing standards),
-> install the Mintlify skill: `npx skills add https://mintlify.com/docs`
-
 # Documentation project instructions
 
 ## About this project
 
-- This is a documentation site built on [Mintlify](https://mintlify.com)
-- Pages are MDX files with YAML frontmatter
-- Configuration lives in `docs.json`
-- Use the Mintlify MCP server, `https://mcp.mintlify.com`, to edit content and settings via MCP
-- Use the Mintlify docs MCP server, `https://www.mintlify.com/docs/mcp`, to query information about using Mintlify via MCP
+- This is the Mintlify documentation site for LayerRail.
+- Pages are MDX files with YAML frontmatter.
+- Configuration lives in `docs.json`.
+- Use LayerRail wording and product names consistently.
 
-## Terminology
+## Product terminology
 
-{/* Add product-specific terms and preferred usage */}
-{/* Example: Use "workspace" not "project", "member" not "user" */}
+- Use "LayerRail" for the platform.
+- Use "console" for `https://console.layerrail.com`.
+- Use "project" for the resource and billing boundary.
+- Use "virtual machine" or "VM" for compute.
+- Use "LayerRail Kubernetes" or "LKS" for managed Kubernetes.
+- Use "managed PostgreSQL" for the database product.
+- Use "GitHub runners" for GitHub Actions runner infrastructure.
 
 ## Style preferences
 
-{/* Add any project-specific style rules below */}
-
-- Use active voice and second person ("you")
-- Keep sentences concise — one idea per sentence
-- Use sentence case for headings
-- Bold for UI elements: Click **Settings**
-- Code formatting for file names, commands, paths, and code references
+- Use active voice and second person.
+- Keep sentences concise.
+- Use sentence case for headings.
+- Bold UI labels, for example: Click **Create Virtual Machine**.
+- Use code formatting for file names, commands, paths, tokens, and IDs.
+- Prefer practical steps over marketing copy.
 
 ## Content boundaries
 
-{/* Define what should and shouldn't be documented */}
-{/* Example: Don't document internal admin features */}
+- Keep docs product-focused.
+- Do not name upstream/internal source projects in public docs.
+- Do not copy third-party documentation text.
+- Do not document internal admin-only features unless the page is explicitly private.
+- Mark legal pages as draft summaries until reviewed by counsel.

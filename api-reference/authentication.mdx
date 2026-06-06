@@ -1,0 +1,46 @@
+---
+title: "Authentication"
+description: "Authenticate LayerRail API requests with personal access tokens."
+---
+
+LayerRail API requests require a personal access token.
+
+## Header
+
+Send the token in the `Authorization` header:
+
+```bash
+Authorization: Bearer $LAYERRAIL_TOKEN
+```
+
+Example:
+
+```bash
+curl https://console.layerrail.com/api/project \
+  -H "Authorization: Bearer $LAYERRAIL_TOKEN"
+```
+
+## Token scope
+
+Tokens inherit access from the account and project permissions used to create them.
+
+Use separate tokens for:
+
+- Local development.
+- CI.
+- Production automation.
+- Temporary scripts.
+
+## Rotate tokens
+
+Rotate a token when:
+
+- A teammate leaves.
+- A laptop is lost.
+- A CI provider is changed.
+- A token may have been exposed.
+
+<Warning>
+  Never paste API tokens into public issues, screenshots, browser recordings, or support messages.
+</Warning>
+

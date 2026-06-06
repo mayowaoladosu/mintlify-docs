@@ -1,24 +1,37 @@
 ---
-title: "Introduction"
-description: "Welcome to your Mintlify project"
+title: "LayerRail documentation"
+description: "Developer-first cloud infrastructure docs for virtual machines, PostgreSQL, Kubernetes, networking, GitHub runners, and AI inference."
 ---
 
-Write a short description of your product here. What it does, who it's for, and what they can accomplish with it.
+LayerRail is a developer-first cloud infrastructure platform for teams that want simple compute without losing control of the important parts.
 
-<Card title="Quickstart" icon="rocket" href="/quickstart">
-  This card links to the quickstart page in your project.
-</Card>
-<Card title="Components" icon="puzzle-piece" href="https://mintlify.com/docs/components">
-  Add cards, callouts, steps, tabs, and more to design and structure your pages. This card links to the components overview in the Mintlify documentation with information about every available component.
+Start with a virtual machine, then grow into managed PostgreSQL, Kubernetes, private networking, load balancers, GitHub runners, and AI inference as your project becomes more serious.
 
-  Edit this card to link to a different page in your project when you add more content.
-</Card>
-<Card title="Settings" icon="gear" href="https://mintlify.com/docs/organize/settings">
-  Set your site name, branding, and navigation in the `docs.json` file. This card links to the settings overview page in the Mintlify documentation with information about how to configure your project.
+<CardGroup cols={2}>
+  <Card title="Quick start" icon="rocket" href="/quick-start/managed-services">
+    Create your first project resource from the console.
+  </Card>
+  <Card title="Virtual machines" icon="server" href="/virtual-machines/overview">
+    Launch Linux compute with SSH access, clean sizing, and predictable billing.
+  </Card>
+  <Card title="Managed PostgreSQL" icon="database" href="/managed-postgresql/overview">
+    Create a LayerRail-managed database and connect from your apps.
+  </Card>
+  <Card title="Managed Kubernetes" icon="cubes" href="/managed-kubernetes/overview">
+    Run container workloads with LayerRail Kubernetes clusters.
+  </Card>
+</CardGroup>
 
-  Edit this card to link to a different page in your project when you add more content.
-</Card>
+## How the docs are organized
+
+LayerRail docs follow the same practical shape as a serious cloud provider:
+
+- **Quick start** pages show the shortest path to a working resource.
+- **Product docs** explain each service and the common operations around it.
+- **API docs** cover authentication, request shape, pagination, and automation.
+- **Security and architecture** pages explain how the control plane is organized.
 
 <Tip>
-  Ready to make this your own? Start by editing this page. Update your `docs.json` file to customize your site. Then fill out the [Quickstart](/quickstart) page.
+  If you are new to LayerRail, begin with [Managed services](/quick-start/managed-services), then read the service page for the product you want to deploy.
 </Tip>
+

@@ -1,0 +1,42 @@
+---
+title: "Resize a cluster"
+description: "Change worker capacity for a LayerRail Kubernetes cluster."
+---
+
+Resize a cluster when workloads need more capacity or when you want to reduce cost after a load test.
+
+## When to resize
+
+Resize when:
+
+- Pods are pending because there is not enough CPU or memory.
+- Nodes stay near resource limits.
+- You need extra capacity before a launch.
+- Development workloads no longer need as many workers.
+
+## Change worker count
+
+<Steps>
+  <Step title="Open the cluster">
+    Go to **Kubernetes Clusters** and open the target cluster.
+  </Step>
+  <Step title="Open node pools">
+    Choose the node pool you want to resize.
+  </Step>
+  <Step title="Update worker count">
+    Increase or decrease the worker count.
+  </Step>
+  <Step title="Watch node state">
+    Use `kubectl get nodes` to verify the cluster sees the desired nodes.
+  </Step>
+</Steps>
+
+```bash
+kubectl get nodes
+kubectl get pods --all-namespaces
+```
+
+<Warning>
+  Scaling down can evict pods. Make sure production workloads have enough replicas and disruption budgets before reducing worker count.
+</Warning>
+

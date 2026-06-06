@@ -1,0 +1,48 @@
+---
+title: "SSH access"
+description: "Connect securely to LayerRail virtual machines."
+---
+
+LayerRail uses SSH public keys for VM access. You add the public key during VM creation and keep the private key on your machine.
+
+## Generate a key
+
+If you do not already have an SSH key, create one locally:
+
+```bash
+ssh-keygen -t ed25519 -C "you@example.com"
+```
+
+Show the public key:
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+Paste that public key into the VM creation form.
+
+## Connect to a VM
+
+```bash
+ssh <username>@<public-ip>
+```
+
+For Ubuntu images, the default user is usually:
+
+```bash
+ssh ubuntu@<public-ip>
+```
+
+## Troubleshooting
+
+| Problem | Check |
+| --- | --- |
+| Permission denied | Confirm you are using the private key that matches the public key on the VM. |
+| Connection timed out | Confirm the VM is running and port `22` is allowed by the firewall. |
+| Wrong username | Check the username field on the VM creation page. |
+| Key format rejected | Use an OpenSSH public key, not a private key or `.ppk` file. |
+
+<Warning>
+  Never paste your private SSH key into LayerRail or a support ticket.
+</Warning>
+

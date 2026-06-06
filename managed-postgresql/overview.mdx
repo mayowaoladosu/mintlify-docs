@@ -1,0 +1,57 @@
+---
+title: "Overview"
+description: "Create and operate LayerRail-managed PostgreSQL databases."
+---
+
+LayerRail-managed PostgreSQL gives your project a database without making you provision every server component by hand.
+
+Use it for web apps, SaaS backends, dashboards, queues, and services that need a reliable relational database.
+
+## Create managed PostgreSQL
+
+<Steps>
+  <Step title="Open PostgreSQL Databases">
+    In the LayerRail console, open your project and choose **PostgreSQL Databases**.
+  </Step>
+  <Step title="Choose Create PostgreSQL Database">
+    Select the create card to open the database form.
+  </Step>
+  <Step title="Pick a location">
+    Choose the same location as the application or VM that will connect to the database.
+  </Step>
+  <Step title="Choose a size">
+    Start with a small plan for development. Use larger plans for production or heavier workloads.
+  </Step>
+  <Step title="Create the database">
+    Submit the form and wait for the database state to become ready.
+  </Step>
+</Steps>
+
+## Instance overview
+
+The database page shows:
+
+- Database name and ID.
+- Location.
+- State.
+- Connection details.
+- Networking controls.
+- Backup and operational information.
+
+## Good defaults
+
+LayerRail keeps the default PostgreSQL experience familiar:
+
+- Standard PostgreSQL connection strings.
+- Project-scoped access.
+- Private networking support.
+- Firewall-aware access.
+- Upgrade-friendly sizing.
+
+<CardGroup cols={2}>
+  <Card title="Connection" icon="plug" href="/managed-postgresql/connection" />
+  <Card title="Networking" icon="network-wired" href="/managed-postgresql/networking" />
+  <Card title="Backup and restore" icon="rotate-left" href="/managed-postgresql/backup-and-restore" />
+  <Card title="Virtual machines" icon="server" href="/virtual-machines/overview" />
+</CardGroup>
+

@@ -1,0 +1,58 @@
+---
+title: "Command line and API"
+description: "Use personal access tokens to automate LayerRail from scripts and CI."
+---
+
+LayerRail resources can be managed from the console and automated through API-compatible workflows.
+
+## Create a personal access token
+
+<Steps>
+  <Step title="Open account settings">
+    Sign in to the [LayerRail console](https://console.layerrail.com), open your profile menu, and go to account settings.
+  </Step>
+  <Step title="Create a token">
+    Create a personal access token for the project or automation workflow you want to run.
+  </Step>
+  <Step title="Store it securely">
+    Save the token in a password manager or CI secret store. Do not commit it to Git.
+  </Step>
+</Steps>
+
+## Authenticate requests
+
+LayerRail API requests use a personal access token in the `Authorization` header.
+
+```bash
+export LAYERRAIL_TOKEN="pat-..."
+
+curl https://console.layerrail.com/api/project \
+  -H "Authorization: Bearer $LAYERRAIL_TOKEN" \
+  -H "Content-Type: application/json"
+```
+
+<Tip>
+  Some SDK and CLI flows accept `Bearer:` with a colon for compatibility, but new integrations should use `Authorization: Bearer $LAYERRAIL_TOKEN`.
+</Tip>
+
+## Use scripts carefully
+
+Automation should be project-scoped and repeatable. Store IDs and location names in environment variables instead of hard-coding them into shared scripts.
+
+```bash
+export LAYERRAIL_PROJECT_ID="pj..."
+export LAYERRAIL_LOCATION="us-lax"
+```
+
+## Common automation tasks
+
+- List project resources.
+- Create virtual machines.
+- Rotate access tokens.
+- Create inference API keys.
+- Query resource state before deployment.
+
+<Warning>
+  API coverage is still expanding. If an operation is not documented yet, use the console for that action and contact support before automating it.
+</Warning>
+

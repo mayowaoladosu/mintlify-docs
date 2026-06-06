@@ -1,20 +1,107 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "LayerRail Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#8B67F2",
+    "light": "#D1C8E7",
+    "dark": "#5A3A38"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.png",
+  "logo": {
+    "light": "/logo/light.png",
+    "dark": "/logo/dark.png"
+  },
   "navigation": {
     "pages": [
-      "index",
-      "quickstart",
+      "overview",
+      {
+        "group": "Quick start",
+        "pages": [
+          "quick-start/managed-services",
+          "quick-start/cli"
+        ]
+      },
+      {
+        "group": "Virtual machines",
+        "pages": [
+          "virtual-machines/overview",
+          "virtual-machines/quickstart",
+          "virtual-machines/ssh",
+          "virtual-machines/sizes"
+        ]
+      },
+      {
+        "group": "Managed PostgreSQL",
+        "pages": [
+          "managed-postgresql/overview",
+          "managed-postgresql/connection",
+          "managed-postgresql/networking",
+          "managed-postgresql/backup-and-restore"
+        ]
+      },
+      {
+        "group": "Managed Kubernetes",
+        "pages": [
+          "managed-kubernetes/overview",
+          "managed-kubernetes/quickstart",
+          "managed-kubernetes/resize-cluster",
+          "managed-kubernetes/expose-application-using-tls"
+        ]
+      },
+      {
+        "group": "Networking",
+        "pages": [
+          "networking/private-subnet",
+          "networking/firewall",
+          "networking/load-balancer"
+        ]
+      },
+      {
+        "group": "GitHub runners",
+        "pages": [
+          "github-actions-integration/quickstart",
+          "github-actions-integration/runner-types",
+          "github-actions-integration/security"
+        ]
+      },
       {
         "group": "AI inference",
-        "pages": ["ai-inference/overview", "ai-inference/playground"]
+        "pages": [
+          "ai-inference/overview",
+          "ai-inference/playground"
+        ]
+      },
+      {
+        "group": "API reference",
+        "pages": [
+          "api-reference/overview",
+          "api-reference/authentication",
+          "api-reference/pagination"
+        ]
+      },
+      {
+        "group": "Architecture",
+        "pages": [
+          "architecture/control-plane-and-workers"
+        ]
+      },
+      {
+        "group": "Security",
+        "pages": [
+          "security/authorization",
+          "security/trust-center"
+        ]
+      },
+      {
+        "group": "About",
+        "pages": [
+          "about/pricing",
+          "about/regions",
+          "about/support",
+          "about/privacy-policy",
+          "about/terms-of-service"
+        ]
       },
       "changelog"
     ],
@@ -22,51 +109,56 @@
       "anchors": [
         {
           "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
+          "href": "/overview",
           "icon": "book-open-cover"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Console",
+          "href": "https://console.layerrail.com",
+          "icon": "terminal"
+        },
+        {
+          "anchor": "Status",
+          "href": "https://status.layerrail.com",
+          "icon": "signal"
         }
       ]
     }
   },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
   "navbar": {
     "links": [
       {
+        "label": "Website",
+        "href": "https://layerrail.com"
+      },
+      {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@layerrail.com"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Open console",
+      "href": "https://console.layerrail.com"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://github.com/mayowaoladosu/layerrail",
+      "x": "https://x.com/layerrail",
+      "linkedin": "https://www.linkedin.com/company/layerrail"
     }
   }
 }

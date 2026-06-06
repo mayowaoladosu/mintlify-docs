@@ -1,0 +1,50 @@
+---
+title: "Backup and restore"
+description: "Understand PostgreSQL backup expectations and recovery planning."
+---
+
+Backups protect you from accidental deletion, bad deploys, and application-level data corruption.
+
+## What to back up
+
+For each production database, plan for:
+
+- Full database backups.
+- Point-in-time recovery where available.
+- Schema migration history.
+- Application secrets needed to reconnect.
+- A tested restore process.
+
+## Export a backup
+
+For manual exports, use `pg_dump` from a trusted machine:
+
+```bash
+pg_dump "$DATABASE_URL" > layerrail-backup.sql
+```
+
+Compress the dump:
+
+```bash
+gzip layerrail-backup.sql
+```
+
+## Restore a dump
+
+```bash
+gunzip layerrail-backup.sql.gz
+psql "$DATABASE_URL" < layerrail-backup.sql
+```
+
+<Warning>
+  Restoring into an existing database can overwrite or duplicate data depending on the dump format. Test restores in a staging database first.
+</Warning>
+
+## Production checklist
+
+- Know the recovery time objective for the app.
+- Test restores before you need them.
+- Store backups outside the application VM.
+- Restrict who can download backups.
+- Keep audit logs for backup access.
+

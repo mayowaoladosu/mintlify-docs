@@ -1,0 +1,51 @@
+---
+title: "Load balancer"
+description: "Create public endpoints and route traffic to LayerRail services."
+---
+
+LayerRail load balancers give your project a stable endpoint in front of application servers or Kubernetes services.
+
+## Key features
+
+- Public service hostnames.
+- Backend VM attachment.
+- HTTP and HTTPS traffic handling.
+- Health-aware routing patterns.
+- Waiting page for endpoints without an attached app.
+- Integration with project networking.
+
+## Create a load balancer
+
+<Steps>
+  <Step title="Open Networking">
+    In your project, choose **Networking** and open **Load Balancers**.
+  </Step>
+  <Step title="Create a load balancer">
+    Choose a name, location, and listener configuration.
+  </Step>
+  <Step title="Attach backends">
+    Attach one or more VMs or services that should receive traffic.
+  </Step>
+  <Step title="Point DNS">
+    Use the generated hostname or point your own DNS record at the load balancer.
+  </Step>
+</Steps>
+
+## Waiting page
+
+If an endpoint is live but no application is attached yet, LayerRail can serve a simple waiting page instead of a blank browser error.
+
+This helps users understand that the endpoint exists and is waiting for traffic.
+
+## TLS
+
+Use HTTPS for public endpoints. If you use a custom domain, configure DNS first, then enable TLS through the load balancer or your application stack.
+
+```text
+app.example.com -> load-balancer-hostname.layerrail.com
+```
+
+<Info>
+  DNS changes can take time to propagate. Check both the LayerRail console and your DNS provider when a new hostname does not resolve immediately.
+</Info>
+

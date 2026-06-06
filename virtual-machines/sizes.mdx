@@ -1,0 +1,42 @@
+---
+title: "Sizes"
+description: "Choose the right virtual machine size for your workload."
+---
+
+VM sizes define CPU, memory, storage, and bandwidth for a virtual machine.
+
+## Start small
+
+Use small sizes for:
+
+- Prototypes.
+- Staging environments.
+- Background jobs.
+- Low-traffic APIs.
+- Game server testing.
+
+## Scale up
+
+Move to larger sizes when:
+
+- CPU stays high for long periods.
+- The application is memory constrained.
+- Disk usage is growing quickly.
+- Network transfer increases.
+- The VM is running multiple services.
+
+## Sizing guide
+
+| Workload | Suggested starting point |
+| --- | --- |
+| Static site or small API | Small shared CPU plan |
+| Worker or bot | Small shared CPU plan |
+| Production web app | Balanced CPU and memory |
+| Database on a VM | Prefer managed PostgreSQL first |
+| Game server | Start small, upgrade when player count grows |
+| CI runner | Match CPU and memory to workflow size |
+
+<Tip>
+  For databases, use [Managed PostgreSQL](/managed-postgresql/overview) unless you specifically need to self-manage the database engine.
+</Tip>
+

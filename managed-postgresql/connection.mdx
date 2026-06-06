@@ -1,0 +1,77 @@
+---
+title: "Connection"
+description: "Connect applications and tools to a LayerRail PostgreSQL database."
+---
+
+The database connection page contains the host, port, username, database name, and connection string for your PostgreSQL instance.
+
+## Connection string
+
+A PostgreSQL connection string usually looks like this:
+
+```bash
+postgresql://<user>:<password>@<host>:5432/<database>?sslmode=require
+```
+
+Set it as an environment variable in your application:
+
+```bash
+export DATABASE_URL="postgresql://<user>:<password>@<host>:5432/<database>?sslmode=require"
+```
+
+## Test with psql
+
+```bash
+psql "$DATABASE_URL"
+```
+
+Run a simple query:
+
+```sql
+select version();
+```
+
+## TLS
+
+Use TLS for application connections. If your framework supports `sslmode=require`, keep it enabled in production.
+
+```bash
+postgresql://<user>:<password>@<host>:5432/<database>?sslmode=require
+```
+
+## Application examples
+
+<Tabs>
+  <Tab title="Node.js">
+    ```js
+    import pg from "pg";
+
+    const pool = new pg.Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false }
+    });
+    ```
+  </Tab>
+  <Tab title="Ruby">
+    ```ruby
+    require "pg"
+
+    conn = PG.connect(ENV.fetch("DATABASE_URL"))
+    puts conn.exec("select now()").first
+    ```
+  </Tab>
+  <Tab title="Python">
+    ```python
+    import os
+    import psycopg
+
+    with psycopg.connect(os.environ["DATABASE_URL"]) as conn:
+        print(conn.execute("select now()").fetchone())
+    ```
+  </Tab>
+</Tabs>
+
+<Warning>
+  Treat database passwords like secrets. Do not commit connection strings to Git.
+</Warning>
+

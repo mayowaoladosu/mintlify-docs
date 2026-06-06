@@ -1,0 +1,36 @@
+---
+title: "Pagination"
+description: "Work with paginated LayerRail API responses."
+---
+
+List endpoints can paginate results when a project contains many resources.
+
+## List response
+
+```json
+{
+  "items": [
+    {
+      "id": "..."
+    }
+  ],
+  "next_cursor": "..."
+}
+```
+
+## Request the next page
+
+Pass the cursor from the previous response:
+
+```bash
+curl "https://console.layerrail.com/api/project?cursor=$NEXT_CURSOR" \
+  -H "Authorization: Bearer $LAYERRAIL_TOKEN"
+```
+
+## Pagination tips
+
+- Keep processing idempotent.
+- Store the last cursor only after the page succeeds.
+- Expect empty pages when resources are created or deleted during a scan.
+- Do not assume ordering unless an endpoint documents it.
+

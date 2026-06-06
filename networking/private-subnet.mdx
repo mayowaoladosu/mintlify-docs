@@ -1,0 +1,45 @@
+---
+title: "Private subnet"
+description: "Use private LayerRail networking to connect resources inside a project."
+---
+
+Private subnets let resources communicate without exposing every service to the public internet.
+
+Use private subnets for:
+
+- App servers talking to databases.
+- Worker VMs talking to internal APIs.
+- Kubernetes nodes reaching project services.
+- Load balancers forwarding to backend VMs.
+
+## Create a private subnet
+
+<Steps>
+  <Step title="Open Networking">
+    In the project sidebar, choose **Networking**.
+  </Step>
+  <Step title="Choose Private Subnets">
+    Open the private subnet tab.
+  </Step>
+  <Step title="Create a subnet">
+    Pick a location and CIDR range that does not conflict with other networks.
+  </Step>
+  <Step title="Attach resources">
+    Attach VMs, firewalls, or load balancers as needed.
+  </Step>
+</Steps>
+
+## CIDR planning
+
+Use private ranges such as:
+
+```text
+10.0.0.0/16
+172.16.0.0/12
+192.168.0.0/16
+```
+
+<Tip>
+  Keep each environment in a predictable subnet range. It makes firewall and troubleshooting work much easier.
+</Tip>
+

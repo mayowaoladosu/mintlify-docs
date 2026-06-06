@@ -1,0 +1,46 @@
+---
+title: "Quickstart"
+description: "Connect GitHub Actions to LayerRail runner infrastructure."
+---
+
+LayerRail GitHub runners let workflows run on project-managed compute instead of shared hosted runners.
+
+## Install the GitHub App
+
+<Steps>
+  <Step title="Open GitHub runners">
+    In the LayerRail console, open your project and choose **GitHub Runners**.
+  </Step>
+  <Step title="Connect a GitHub account">
+    Click **Connect new account** and install the LayerRail GitHub App for the organization or repositories you want to use.
+  </Step>
+  <Step title="Return to LayerRail">
+    After installation, GitHub redirects back to the LayerRail console.
+  </Step>
+  <Step title="Choose repositories">
+    Select which repositories can use LayerRail runners.
+  </Step>
+</Steps>
+
+## Use a runner label
+
+Add the LayerRail runner label to a workflow:
+
+```yaml
+name: CI
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: layerrail
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Running on LayerRail"
+```
+
+<Tip>
+  Use project-level runner access when you want billing, audit logs, and compute isolation to follow the LayerRail project.
+</Tip>
+

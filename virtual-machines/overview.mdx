@@ -1,0 +1,51 @@
+---
+title: "Overview"
+description: "LayerRail virtual machines give you direct Linux compute for apps, services, workers, and custom infrastructure."
+---
+
+LayerRail virtual machines are the base compute layer for projects that need a familiar server runtime.
+
+Use a VM when you want direct control over the operating system, packages, ports, SSH access, and process manager.
+
+## What you can run
+
+<CardGroup cols={2}>
+  <Card title="Web applications" icon="globe">
+    Deploy web apps, APIs, dashboards, and internal tools.
+  </Card>
+  <Card title="Background workers" icon="gears">
+    Run queues, scheduled jobs, bots, and long-running services.
+  </Card>
+  <Card title="Game servers" icon="gamepad">
+    Host game workloads that need direct VM access and predictable sizing.
+  </Card>
+  <Card title="Custom infrastructure" icon="server">
+    Install your own runtime, reverse proxy, monitoring agent, or control process.
+  </Card>
+</CardGroup>
+
+## VM lifecycle
+
+| State | Meaning |
+| --- | --- |
+| Creating | LayerRail is provisioning the VM and bootstrapping access. |
+| Running | The VM is active and ready for SSH or service traffic. |
+| Deleting | The VM is being removed and should no longer receive traffic. |
+
+## Supported images
+
+LayerRail focuses on familiar Linux distributions:
+
+- Ubuntu
+- Debian
+- AlmaLinux
+- Fedora
+
+## Networking
+
+Every VM can be used with public IPs, private subnets, firewall rules, and load balancers.
+
+<Card title="Connect VM networking" icon="network-wired" href="/networking/private-subnet">
+  Learn how private subnets, firewalls, and load balancers fit together.
+</Card>
+

@@ -1,0 +1,73 @@
+---
+title: "Managed services"
+description: "Create your first LayerRail resource from the console."
+---
+
+Use this guide when you want the fastest path from a new account to a running cloud resource.
+
+## Sign in
+
+Open the [LayerRail console](https://console.layerrail.com) and sign in with your account. You can use email/password or a connected OAuth provider.
+
+<Note>
+  If account verification is enabled, complete email verification before creating production resources.
+</Note>
+
+## Open a project
+
+LayerRail resources live inside projects. Open an existing project or create a new one for the workload you are deploying.
+
+Good project boundaries include:
+
+- One product or app.
+- One customer environment.
+- One staging or production environment.
+- One team-owned infrastructure area.
+
+## Complete billing verification
+
+Some projects are locked until billing verification is complete. Open **Billing** in the project sidebar and follow the verification flow.
+
+<Info>
+  Billing verification protects the platform from abuse before provisioning compute, databases, clusters, and public networking.
+</Info>
+
+## Create a resource
+
+Pick the service you want to start with:
+
+<CardGroup cols={2}>
+  <Card title="Create a virtual machine" icon="server" href="/virtual-machines/quickstart">
+    Best when you need direct compute and SSH access.
+  </Card>
+  <Card title="Create PostgreSQL" icon="database" href="/managed-postgresql/overview">
+    Best when your application needs a managed database.
+  </Card>
+  <Card title="Create Kubernetes" icon="cubes" href="/managed-kubernetes/quickstart">
+    Best when you are deploying containers.
+  </Card>
+  <Card title="Create a load balancer" icon="network-wired" href="/networking/load-balancer">
+    Best when you need a public endpoint in front of VMs or services.
+  </Card>
+</CardGroup>
+
+## Check provisioning
+
+Most resources start in a **creating** state. When provisioning finishes, the resource page shows the details you need to connect, deploy, or attach networking.
+
+If a resource remains in **creating** longer than expected, check:
+
+- Project billing status.
+- Selected location availability.
+- SSH key and image configuration.
+- The [LayerRail status page](https://status.layerrail.com).
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Virtual machines" icon="server" href="/virtual-machines/overview" />
+  <Card title="Managed PostgreSQL" icon="database" href="/managed-postgresql/overview" />
+  <Card title="Managed Kubernetes" icon="cubes" href="/managed-kubernetes/overview" />
+  <Card title="Networking" icon="network-wired" href="/networking/private-subnet" />
+</CardGroup>
+

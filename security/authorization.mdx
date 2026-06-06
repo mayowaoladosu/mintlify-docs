@@ -1,0 +1,34 @@
+---
+title: "Authorization"
+description: "Understand project access and permissions in LayerRail."
+---
+
+LayerRail authorization is project-centered.
+
+Accounts access resources through project membership, roles, and permissions.
+
+## Project boundaries
+
+Use projects to separate:
+
+- Production and staging.
+- Different customers.
+- Different teams.
+- Experiments from critical services.
+
+## Access principles
+
+- Give people the least access they need.
+- Use separate projects for sensitive workloads.
+- Rotate tokens when access changes.
+- Review API token usage regularly.
+- Keep billing access limited.
+
+## API tokens
+
+Personal access tokens should be treated like passwords. Store them in a secret manager and remove them when they are no longer needed.
+
+<Warning>
+  A token with project access can create, modify, or delete infrastructure depending on the permissions attached to the account.
+</Warning>
+

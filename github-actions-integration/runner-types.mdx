@@ -1,0 +1,40 @@
+---
+title: "Runner types"
+description: "Choose the right LayerRail runner shape for GitHub Actions."
+---
+
+Runner types control CPU, memory, storage, and boot behavior for GitHub Actions jobs.
+
+## Standard runners
+
+Use standard runners for:
+
+- Test suites.
+- Build jobs.
+- Linting.
+- Container image builds.
+- Deployment scripts.
+
+## Larger runners
+
+Use larger runners when jobs need:
+
+- More memory.
+- More CPU.
+- Larger caches.
+- Faster dependency installs.
+- Heavy Docker builds.
+
+## Choosing a runner
+
+| Workflow | Suggested runner |
+| --- | --- |
+| Small Node/Ruby/Python test suite | Standard |
+| Docker image build | Larger CPU and memory |
+| Monorepo test matrix | Multiple standard runners |
+| Heavy compile job | Larger runner |
+
+<Info>
+  Runner availability depends on project settings and the compute locations enabled for your account.
+</Info>
+

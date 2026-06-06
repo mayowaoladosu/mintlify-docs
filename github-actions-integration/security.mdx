@@ -1,0 +1,27 @@
+---
+title: "Security"
+description: "Security expectations for GitHub runners on LayerRail."
+---
+
+GitHub runners can execute code from repositories, so access should be scoped carefully.
+
+## Recommended setup
+
+- Install the GitHub App only on repositories that need runners.
+- Limit who can edit workflow files.
+- Store secrets in GitHub Actions or LayerRail-approved secret stores.
+- Avoid printing secrets in logs.
+- Review runner permissions before enabling production deployments.
+
+## Repository trust
+
+Be careful with workflows triggered by pull requests from forks. Review GitHub Actions permissions and approval settings before allowing untrusted code to run on project infrastructure.
+
+## Runner isolation
+
+LayerRail runner infrastructure is designed to be project-scoped. Use separate projects for unrelated teams or sensitive workloads.
+
+<Warning>
+  Treat CI as production infrastructure when workflows can deploy, rotate secrets, or modify cloud resources.
+</Warning>
+

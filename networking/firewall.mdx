@@ -1,0 +1,40 @@
+---
+title: "Firewall"
+description: "Control inbound access to LayerRail resources."
+---
+
+Firewalls define which traffic can reach your resources.
+
+Use them to protect SSH, databases, private services, and public applications.
+
+## Firewall rules
+
+A rule usually includes:
+
+| Field | Meaning |
+| --- | --- |
+| Protocol | TCP, UDP, or ICMP. |
+| Port range | The destination port or ports. |
+| Source | The IP range allowed to connect. |
+| Description | A label that explains why the rule exists. |
+
+## Common rules
+
+| Use case | Protocol | Port | Source |
+| --- | --- | --- | --- |
+| SSH | TCP | 22 | Your trusted IP |
+| HTTP | TCP | 80 | `0.0.0.0/0` |
+| HTTPS | TCP | 443 | `0.0.0.0/0` |
+| PostgreSQL | TCP | 5432 | App subnet or trusted IP |
+
+## Best practices
+
+- Avoid broad SSH access.
+- Remove temporary debug rules.
+- Keep database access narrow.
+- Use descriptions so future you understands why a rule exists.
+
+<Warning>
+  A permissive firewall can expose services that were meant to stay private.
+</Warning>
+

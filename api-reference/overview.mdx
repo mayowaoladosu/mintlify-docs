@@ -1,0 +1,57 @@
+---
+title: "Overview"
+description: "Understand the LayerRail API model."
+---
+
+The LayerRail API lets you automate project and infrastructure workflows with personal access tokens.
+
+## Base URL
+
+```text
+https://console.layerrail.com/api
+```
+
+## Authentication
+
+API requests use a personal access token.
+
+```bash
+curl https://console.layerrail.com/api/project \
+  -H "Authorization: Bearer $LAYERRAIL_TOKEN"
+```
+
+## Request format
+
+Use JSON for request bodies:
+
+```bash
+curl https://console.layerrail.com/api/project \
+  -H "Authorization: Bearer $LAYERRAIL_TOKEN" \
+  -H "Content-Type: application/json"
+```
+
+## Response format
+
+Successful list responses return an `items` array when multiple resources are returned.
+
+```json
+{
+  "items": []
+}
+```
+
+Error responses include a machine-readable error code and message.
+
+```json
+{
+  "error": {
+    "code": "InvalidRequest",
+    "message": "missing required field"
+  }
+}
+```
+
+<Info>
+  Endpoint-by-endpoint API pages will expand as the LayerRail public API stabilizes.
+</Info>
+

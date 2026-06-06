@@ -1,0 +1,73 @@
+---
+title: "Quickstart"
+description: "Create a Kubernetes cluster and deploy a simple workload."
+---
+
+This guide creates a LayerRail Kubernetes cluster and deploys Nginx.
+
+## Create a cluster
+
+<Steps>
+  <Step title="Open Kubernetes Clusters">
+    In the LayerRail console, open your project and choose **Kubernetes Clusters**.
+  </Step>
+  <Step title="Create a cluster">
+    Choose a location, Kubernetes version, control plane count, worker count, and worker size.
+  </Step>
+  <Step title="Wait for readiness">
+    The cluster starts in **creating** state. Wait until the overview page shows the cluster as ready.
+  </Step>
+  <Step title="Download kubeconfig">
+    Open the cluster page and download the kubeconfig file.
+  </Step>
+</Steps>
+
+## Configure kubectl
+
+```bash
+export KUBECONFIG="$PWD/layerrail-kubeconfig.yaml"
+kubectl get nodes
+```
+
+## Deploy Nginx
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27
+          ports:
+            - containerPort: 80
+```
+
+Apply the deployment:
+
+```bash
+kubectl apply -f nginx.yaml
+kubectl get pods
+```
+
+## Expose the workload
+
+```bash
+kubectl expose deployment nginx --port 80 --target-port 80 --type LoadBalancer
+kubectl get services
+```
+
+<Tip>
+  Use [Expose an application using TLS](/managed-kubernetes/expose-application-using-tls) when the service needs a secure public hostname.
+</Tip>
+

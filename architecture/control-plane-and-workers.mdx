@@ -1,0 +1,46 @@
+---
+title: "Control plane and workers"
+description: "How LayerRail separates the console, background workers, and provisioned infrastructure."
+---
+
+LayerRail separates user-facing control plane traffic from background provisioning work.
+
+## High-level model
+
+```text
+User -> LayerRail console -> Project database
+                         -> Background workers
+                         -> Provider APIs
+                         -> Provisioned resources
+```
+
+## Control plane
+
+The control plane handles:
+
+- Authentication.
+- Project navigation.
+- Resource creation forms.
+- Billing and verification.
+- API requests.
+- Audit-friendly state transitions.
+
+## Background workers
+
+Workers handle longer operations:
+
+- VM provisioning.
+- Database setup.
+- Kubernetes cluster creation.
+- Load balancer updates.
+- DNS operations.
+- Cleanup after deletion.
+
+## Resource state
+
+Resources move through states such as **creating**, **running**, and **deleting** so users can see when work is still in progress.
+
+<Tip>
+  If a resource is stuck in a transitional state, check the status page and contact support with the resource ID.
+</Tip>
+

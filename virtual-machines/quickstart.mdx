@@ -1,0 +1,60 @@
+---
+title: "Quickstart"
+description: "Create a LayerRail virtual machine and connect over SSH."
+---
+
+This quickstart creates a Linux VM from the LayerRail console.
+
+## Create a virtual machine
+
+<Steps>
+  <Step title="Open your project">
+    Go to the [LayerRail console](https://console.layerrail.com), open a project, and choose **Virtual Machines**.
+  </Step>
+  <Step title="Choose Create Virtual Machine">
+    Select **Create Virtual Machine** for a standard CPU VM.
+  </Step>
+  <Step title="Pick a location">
+    Choose the region closest to your users or the service that will connect to the VM.
+  </Step>
+  <Step title="Choose an image">
+    Select Ubuntu, Debian, AlmaLinux, or Fedora.
+  </Step>
+  <Step title="Choose a size">
+    Start small for testing. Move to larger plans when CPU, memory, or bandwidth needs grow.
+  </Step>
+  <Step title="Add an SSH key">
+    Paste your public SSH key so you can connect after the VM is ready.
+  </Step>
+  <Step title="Create the VM">
+    Submit the form and wait for the VM state to change from **creating** to **running**.
+  </Step>
+</Steps>
+
+## Connect over SSH
+
+Use the public IP address shown on the VM page.
+
+```bash
+ssh ubuntu@<public-ip>
+```
+
+If you changed the username during creation, use that username instead.
+
+```bash
+ssh <username>@<public-ip>
+```
+
+<Info>
+  SSH access depends on the public key you provided during creation and the firewall rules attached to the VM.
+</Info>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="SSH access" icon="key" href="/virtual-machines/ssh" />
+  <Card title="VM sizes" icon="gauge-high" href="/virtual-machines/sizes" />
+  <Card title="Load balancers" icon="network-wired" href="/networking/load-balancer" />
+  <Card title="Firewalls" icon="shield" href="/networking/firewall" />
+</CardGroup>
+

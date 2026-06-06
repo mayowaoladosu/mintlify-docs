@@ -1,74 +1,59 @@
 ---
 title: "AI inference overview"
-description: "Browse the project model catalog, pick a text generation or embedding endpoint by pricing and context length, and call it from your apps."
+description: "Use project-scoped AI inference endpoints and API keys."
 ---
 
-LayerRail AI inference gives your project a managed set of OpenAI-compatible endpoints for text generation and embedding models. Each project gets a hosted model catalog, per-model URLs, and inference API keys. Use them to call models from your own code or to experiment in the in-product playground.
+LayerRail AI inference gives a project a small set of model endpoints, API keys, and a playground for testing requests before you wire them into an application.
+
+## What it is for
 
 Use AI inference when you want to:
 
-- Call open and hosted LLMs without managing inference servers yourself.
-- Compare models across providers behind a single, OpenAI-compatible HTTP API.
-- Generate embeddings for retrieval, classification, or semantic search.
-- Prototype prompts and request settings in a UI before wiring them into an application.
+- Test text generation models.
+- Generate embeddings.
+- Build simple AI features without operating model servers.
+- Keep inference keys scoped to a LayerRail project.
+- Prototype prompts in the console.
 
-## Find a model in the catalog
+## Model catalog
 
-The **Inference** tab opens on the model catalog. The top of the page summarizes what is available to your project:
+The inference catalog shows available endpoints for the project.
 
-- **Available models** — total endpoints visible to this project.
-- **Text generation** — chat and completion endpoints.
-- **Embedding models** — endpoints that return vector embeddings.
-- **Free quota** — inference tokens remaining on the project's free allowance.
+Each model card includes:
 
-Below the summary you can narrow the catalog down:
-
-- **Search models** — matches against model name, provider, capability, and the model card (for example, the Hugging Face model id). Type to filter the cards in real time.
-- **Capability** — filter to **Text generation** or **Embeddings**.
-- **Base URL** — the project's inference base URL, with a copy button. Combine it with the path on each model card to reach a specific endpoint.
-
-If the search or filter excludes every model, you'll see a "No matching models" message — clear the filters to return to the full catalog.
-
-## Read a model card
-
-Each card in the catalog shows the information you need to decide whether a model fits your workload:
-
-| Field | What it tells you |
+| Field | Meaning |
 | --- | --- |
-| Display name and model id | The friendly name and the value to pass as `model` in API requests. |
-| Provider | Who hosts the underlying weights (for example, the LayerRail-managed pool or an upstream provider). |
-| Model card | Link to the upstream model card (Hugging Face when available). |
-| Capability | **Text generation** or **Embeddings**. |
-| Context length | Maximum context window the endpoint accepts. |
-| Streaming | Whether streamed responses are supported on this endpoint. |
-| Modalities | `Text`, or `Text, image, PDF` for multimodal endpoints. |
-| Price | Input and output cost in USD per 1M tokens. |
-| URL | The full endpoint URL — click to copy. |
-| Model ID | The exact `model` value to send in requests — click to copy. |
-| CURL usage example | A ready-to-run example you can paste into a terminal. |
+| Model name | The model you pass in requests. |
+| Provider | The system backing the endpoint. |
+| Capability | Text generation or embeddings. |
+| Context length | The supported input window. |
+| Price | Input and output token pricing where configured. |
+| URL | The endpoint URL to call from your application. |
 
-Text generation cards also expose an **Open in playground** button that launches the model in the in-product playground with the endpoint pre-selected.
+## API keys
 
-## Call an endpoint
-
-The endpoints follow the OpenAI chat completions and embeddings shapes. Combine the **Base URL**, the endpoint path from the model card, and an inference API key:
+Create an inference API key before sending requests.
 
 ```bash
-curl https://<your-base-url>/v1/chat/completions \
-  -H "Authorization: Bearer $LAYERRAIL_API_KEY" \
+curl https://console.layerrail.com/ai/v1/chat/completions \
+  -H "Authorization: Bearer $INFERENCE_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "<model-id-from-the-card>",
+    "model": "@cf/meta/llama-3.1-8b-instruct",
     "messages": [
-      {"role": "user", "content": "Write a haiku about databases."}
+      { "role": "user", "content": "Write a short deployment checklist." }
     ]
   }'
 ```
 
-Manage the keys you pass in the `Authorization` header from the **Inference API key** page in your project.
+<Warning>
+  Inference API keys are project secrets. Do not expose them in frontend code.
+</Warning>
 
 ## Next steps
 
-<Card title="Use the playground" icon="play" href="/ai-inference/playground">
-  Try a model, tune temperature and top_p, switch prompt templates, and watch per-session usage in the side panel.
-</Card>
+<CardGroup cols={2}>
+  <Card title="Playground" icon="play" href="/ai-inference/playground" />
+  <Card title="API authentication" icon="key" href="/api-reference/authentication" />
+</CardGroup>
+
