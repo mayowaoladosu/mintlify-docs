@@ -4,8 +4,17 @@
   "name": "LayerRail Docs",
   "colors": {
     "primary": "#8B67F2",
-    "light": "#D1C8E7",
-    "dark": "#5A3A38"
+    "light": "#B99CFF",
+    "dark": "#8B67F2"
+  },
+  "background": {
+    "color": {
+      "light": "#FEFDFE",
+      "dark": "#100B1F"
+    }
+  },
+  "icons": {
+    "library": "fontawesome"
   },
   "favicon": "/favicon.png",
   "logo": {
