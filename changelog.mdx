@@ -1,25 +1,175 @@
 ---
 title: "Changelog"
-description: "Recent LayerRail product updates, new region launches, feature releases, breaking changes, and notable fixes across every service area."
+description: "LayerRail product updates, infrastructure releases, billing improvements, reliability fixes, and documentation changes."
 ---
 
-Track product changes, fixes, and new infrastructure surfaces here.
+Track the LayerRail build history here. This changelog starts from the first visible LayerRail product commits in the repository history.
 
-## June 2026
+## June 6, 2026
 
-### Console reliability
+### Console safety and observability
 
-- Added Sentry error capture for the Ruby console and Rack request path.
-- Fixed login streak tracking so authentication does not fail when streak columns are unavailable.
-- Verified console, worker, and monitor services after deployment.
+- Added Sentry support for the Ruby console so production errors can be captured and investigated faster.
+- Fixed login streak tracking so authentication cannot fail when streak data is unavailable or still migrating.
+- Improved auth safety around dashboard login flows.
 
-### Documentation
+### Load balancer experience
 
-- Rebuilt the documentation structure around LayerRail products.
-- Added initial pages for virtual machines, PostgreSQL, Kubernetes, networking, GitHub runners, AI inference, API usage, security, and support.
+- Redesigned the empty load balancer waiting page so newly created service endpoints feel intentional while traffic is not attached yet.
 
-### Platform
+## June 5, 2026
 
-- Added status page incident and maintenance workflow support.
-- Continued work on Linode-backed compute, PostgreSQL, Kubernetes, and load balancer provisioning.
+### Linode service reliability
 
+- Added clearer PostgreSQL bootstrap progress logging for production debugging.
+- Ensured service firewalls allow control-plane SSH during provisioning.
+- Fixed Linode service bootstrap deadlocks.
+- Fixed the Kubernetes worker join endpoint used during node registration.
+- Fixed Linode load balancer health checks.
+- Hardened PostgreSQL initialization checks.
+- Fixed Kubernetes private networking behavior on Linode.
+- Installed kubeconfig on Kubernetes nodes after cluster setup.
+
+## June 4, 2026
+
+### Kubernetes, PostgreSQL, and load balancer provisioning
+
+- Fixed Linode DNS provisioning flows.
+- Fixed PostgreSQL empty database provisioning deadlines.
+- Extended Kubernetes node provisioning deadlines for slower production boots.
+- Hardened Kubernetes provisioning waits.
+- Hardened Linode service provisioning.
+- Fixed the Linode service provisioning lifecycle so resources move through creation more consistently.
+- Handled malformed ACME revoke responses during certificate cleanup.
+
+## June 3, 2026
+
+### Documentation and repository readiness
+
+- Rewrote the README for LayerRail.
+- Added community health files for the GitHub repository.
+- Added and refined security policy files.
+- Synced the docs security policy copy.
+- Added LayerRail `llms.txt` discovery files.
+
+### Billing and brand polish
+
+- Set the Polar verification charge to one dollar.
+- Added Polar metered usage portal support.
+- Fixed Polar invoice finalization visibility.
+- Added LayerRail branding to invoice PDFs.
+- Finished invoice branding alignment.
+- Aligned shared LayerRail brand assets.
+- Updated the email footer to point to the LayerRail GitHub repository.
+
+### AI inference
+
+- Improved the AI inference product surface with a clearer catalog and playground experience.
+
+## May 30, 2026
+
+### LayerRail Deploy v1
+
+- Added the first LayerRail Deploy v1 surface.
+- Hardened the initial deploy workflow.
+- Made LayerRail Deploy managed by default.
+
+## May 29, 2026
+
+### Admin and planning
+
+- Added admin discount code creation.
+- Added the LayerRail cloud website study.
+- Added SaaS gallery inspiration notes for the marketing site direction.
+
+## May 28, 2026
+
+### Pricing and billing
+
+- Lowered Game VPS launch pricing.
+- Added automatic refunds for Polar verification checkout.
+- Added the status badge to the console.
+- Lowered Linode pricing presentation while keeping the markup model.
+- Added a Linode Nanode starter plan.
+- Expanded the Linode Nanode starter plan family.
+
+### Networking and DNS
+
+- Cleaned up provider location labels so users see plain region names.
+- Wired Cloudflare DNS for service endpoints.
+- Added support for Linode load balancer node updates.
+- Included direct VM firewalls in Linode subnet rules.
+- Fixed service DNS zone creation.
+- Recovered missing Linode subnet firewalls.
+- Normalized Cloudflare CNAME DNS sync.
+
+### Kubernetes, PostgreSQL, and load balancers
+
+- Fixed Linode Kubernetes and PostgreSQL provisioning.
+- Hardened Linode Kubernetes CNI bootstrap.
+- Placed Linode PostgreSQL data on a managed disk.
+- Used the Linode private IPv6 range for Kubernetes CNI.
+- Moved Linode Kubernetes package preparation into an asynchronous flow.
+- Published DNS for empty Linode load balancers.
+- Added a Let's Encrypt waiting page for Linode load balancers.
+- Supported ACME checks with external DNS.
+
+### Brand assets
+
+- Added a LayerRail SVG graphic to the brand asset set.
+
+## May 27, 2026
+
+### AI inference
+
+- Switched AI inference to Cloudflare Workers AI.
+- Fixed the AI playground submit binding.
+- Expanded the Cloudflare AI model catalog.
+
+### Auth, email, and monitoring
+
+- Improved the GitHub App install recovery flow.
+- Required verification for social signups.
+- Fixed the social signup verification redirect.
+- Added the Resend webhook endpoint.
+- Added health check endpoints for monitoring.
+- Fixed health check JSON headers.
+- Required JSON in the admin app.
+- Handled admin health checks before the admin app loads.
+
+### Game VPS and brand cleanup
+
+- Added IONOS Game VPS provisioning.
+- Hid Game VPS from dashboard stats while it remained experimental.
+- Added the LayerRail logo asset set.
+- Refactored code structure for readability and maintainability.
+
+## May 26, 2026
+
+### LayerRail foundation
+
+- Prepared the LayerRail Linode platform.
+- Added the PostgreSQL icon and official PostgreSQL logo asset for database pages.
+- Added and refined the first LayerRail brand logo assets.
+- Fixed GPU pricing and admin empty states.
+- Centered the auth page brand mark.
+
+### Billing
+
+- Fixed Polar invoice checkout amounts.
+- Sanitized billing email, state, and metadata inputs for Polar API validation.
+- Added automatic recovery for split billing state when a Polar customer cannot be found.
+- Fixed billing cleanup by removing associated payment methods first.
+- Fixed billing details errors when Polar returns a missing customer response.
+
+### Compute, GPU, and GitHub runners
+
+- Fixed Linode API path handling.
+- Enabled Linode-backed GPU VM options.
+- Wired LayerRail GitHub runners to Linode.
+- Tightened the Linode GPU VM catalog.
+- Handled GitHub App setup redirects.
+
+### Production host support
+
+- Added support for configured Render hosts.
