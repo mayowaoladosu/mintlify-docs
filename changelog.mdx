@@ -5,6 +5,35 @@ description: "LayerRail product updates, infrastructure releases, billing improv
 
 Track the LayerRail build history here. This changelog starts from the first visible LayerRail product commits in the repository history.
 
+## Week of June 1–6, 2026
+
+A focused week on provisioning reliability across Kubernetes, PostgreSQL, and load balancers, plus billing polish and a cleaner AI inference experience.
+
+### New
+
+- **Sentry error reporting in the console.** Production errors are now captured automatically so issues can be diagnosed and resolved faster.
+- **Polar metered usage portal.** View metered usage directly from the billing portal for clearer visibility into consumption-based charges.
+- **LayerRail-branded invoices.** Invoice PDFs now ship with LayerRail branding for a consistent billing experience.
+
+### Updated
+
+- **Cleaner [AI inference](/ai-inference/overview) surface.** A refreshed catalog and [playground](/ai-inference/playground) make model discovery and testing easier.
+- **Redesigned load balancer empty state.** New [load balancers](/networking/load-balancer) now show an intentional waiting page before traffic is attached.
+- **Longer Kubernetes provisioning windows.** Extended [cluster](/managed-kubernetes/overview) node provisioning deadlines accommodate slower production boots.
+- **Polar verification charge set to $1.** The verification hold is now a flat one-dollar amount.
+
+### Fixed
+
+- **Login streaks.** Authentication no longer fails when streak data is unavailable or migrating.
+- **Linode service bootstrap.** Resolved deadlocks and tightened the provisioning lifecycle so [virtual machines](/virtual-machines/overview) move through creation more consistently.
+- **PostgreSQL provisioning.** Hardened initialization checks, fixed empty database provisioning deadlines, and added clearer bootstrap progress logging. See [Managed PostgreSQL](/managed-postgresql/overview).
+- **Kubernetes networking and joins.** Fixed the worker join endpoint used during node registration and corrected private networking behavior on Linode.
+- **Load balancer health checks.** Linode load balancer health checks now report correctly.
+- **DNS provisioning.** Resolved Linode DNS provisioning flow errors.
+- **Certificate cleanup.** Malformed ACME revoke responses are now handled gracefully.
+- **Service firewalls.** Control-plane SSH is now allowed during provisioning.
+- **Invoice finalization.** Polar invoice finalization is now visible end-to-end.
+
 ## June 6, 2026
 
 ### Console safety and observability
