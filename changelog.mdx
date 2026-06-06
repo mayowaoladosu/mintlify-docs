@@ -46,6 +46,15 @@ A focused week on provisioning reliability across Kubernetes, PostgreSQL, and lo
 
 - Redesigned the empty load balancer waiting page so newly created service endpoints feel intentional while traffic is not attached yet.
 
+### AI inference
+
+- Expanded the Cloudflare Workers AI catalog shown in the console to include more supported text generation and embedding models.
+- Reduced the free AI inference quota to `100,000` tokens.
+- Fixed inference quota tracking so zero-dollar preview usage still reduces the free quota.
+- Added token usage fallback estimation when a provider response does not include usage metadata.
+- Improved the AI playground quota display so it updates immediately after a successful request.
+- Fixed mobile responsiveness for inference catalog curl examples.
+
 ## June 5, 2026
 
 ### Linode service reliability
