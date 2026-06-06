@@ -12,6 +12,7 @@ A focused week on provisioning reliability across Kubernetes, PostgreSQL, and lo
 ### New
 
 - **Sentry error reporting in the console.** Production errors are now captured automatically so issues can be diagnosed and resolved faster.
+- **Native Cloudflare AI Models support.** LayerRail now exposes Workers AI tasks beyond chat and embeddings, including image generation, speech transcription, text-to-speech, translation, summarization, reranking, classification, object detection, and image-to-text through the console playground and `/ai/v1/run`.
 - **Polar metered usage portal.** View metered usage directly from the billing portal for clearer visibility into consumption-based charges.
 - **LayerRail-branded invoices.** Invoice PDFs now ship with LayerRail branding for a consistent billing experience.
 
@@ -48,7 +49,10 @@ A focused week on provisioning reliability across Kubernetes, PostgreSQL, and lo
 
 ### AI inference
 
+- Added the native Workers AI `/ai/v1/run` route for non-chat model tasks.
+- Added playground support for image generation, audio transcription, text-to-speech, translation, summarization, reranking, text classification, image classification, object detection, image-to-text, and image-plus-text prompts.
 - Expanded the Cloudflare Workers AI catalog shown in the console to include more supported text generation and embedding models.
+- Updated model cards and curl examples so each capability points to the correct API route.
 - Reduced the free AI inference quota to `100,000` tokens.
 - Fixed inference quota tracking so zero-dollar preview usage still reduces the free quota.
 - Added token usage fallback estimation when a provider response does not include usage metadata.
