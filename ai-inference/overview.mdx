@@ -1,23 +1,40 @@
 ---
 title: "AI inference overview"
-description: "Call hosted language and embedding models through project-scoped LayerRail inference endpoints with per-project API keys and usage limits."
+description: "Call hosted language, embedding, vision, speech, and image-generation models through project-scoped LayerRail inference endpoints with per-project API keys and usage limits."
 ---
 
-LayerRail AI inference gives a project a small set of model endpoints, API keys, and a playground for testing requests before you wire them into an application.
+LayerRail AI inference gives a project a catalog of model endpoints, API keys, and a playground for testing requests before you wire them into an application.
 
 ## What it is for
 
 Use AI inference when you want to:
 
-- Test text generation models.
-- Generate embeddings.
-- Build simple AI features without operating model servers.
+- Run text generation, chat, and reasoning models.
+- Generate embeddings and rerank documents for retrieval.
+- Generate images from text prompts.
+- Transcribe audio, translate text, and synthesize speech.
+- Classify text or images, detect objects, and caption images.
+- Build AI features without operating model servers.
 - Keep inference keys scoped to a LayerRail project.
-- Prototype prompts in the console.
 
 ## Model catalog
 
-The inference catalog shows available endpoints for the project.
+The inference catalog shows available endpoints for the project. The catalog includes models across the following capabilities:
+
+| Capability | Example models |
+| --- | --- |
+| Text generation | Llama 3.1 / 3.2 / 3.3 / 4 Scout, Gemma 3, Mistral Small 3.1, Qwen3, GPT OSS, Kimi, Nemotron, GLM, DeepSeek R1, Granite |
+| Embeddings | BGE (Base / Large / Small / M3), EmbeddingGemma, PLaMo Embedding, Qwen3 Embedding |
+| Rerank | BGE Reranker Base |
+| Text-to-image | Stable Diffusion XL, SDXL Lightning, DreamShaper |
+| Text-to-speech | MeloTTS |
+| Automatic speech recognition | Whisper, Whisper Large v3 Turbo |
+| Translation | M2M100 |
+| Summarization | BART Large CNN |
+| Image-to-text and vision | LLaVA, UForm, Llama 3.2 Vision |
+| Object detection | DETR ResNet-50 |
+| Image classification | ResNet-50 |
+| Text classification | DistilBERT SST-2 |
 
 Each model card includes:
 
@@ -25,14 +42,26 @@ Each model card includes:
 | --- | --- |
 | Model name | The model you pass in requests. |
 | Provider | The system backing the endpoint. |
-| Capability | Text generation or embeddings. |
+| Capability | The task the model performs. |
 | Context length | The supported input window. |
 | Price | Input and output token pricing where configured. |
 | URL | The endpoint URL to call from your application. |
 
+## Endpoints
+
+LayerRail exposes two request shapes from the same base URL:
+
+| Path | Use it for |
+| --- | --- |
+| `/v1/chat/completions` | OpenAI-compatible chat for text generation models. |
+| `/v1/embeddings` | OpenAI-compatible embedding vectors. |
+| `/v1/run` | Native tasks: image generation, speech, translation, classification, rerank, vision, summarization. |
+
+Use `/v1/chat/completions` or `/v1/embeddings` for text generation and embeddings, and `/v1/run` for every other capability. See [Tasks](/ai-inference/tasks) for the request shape of each task.
+
 ## API keys
 
-Create an inference API key before sending requests.
+Create an inference API key before sending requests. Send it as a bearer token.
 
 ```bash
 curl https://console.layerrail.com/ai/v1/chat/completions \
@@ -53,7 +82,7 @@ curl https://console.layerrail.com/ai/v1/chat/completions \
 ## Next steps
 
 <CardGroup cols={2}>
+  <Card title="Tasks" icon="list-check" href="/ai-inference/tasks" />
   <Card title="Playground" icon="play" href="/ai-inference/playground" />
   <Card title="API authentication" icon="key" href="/api-reference/authentication" />
 </CardGroup>
-

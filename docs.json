@@ -78,6 +78,7 @@
         "group": "AI inference",
         "pages": [
           "ai-inference/overview",
+          "ai-inference/tasks",
           "ai-inference/playground"
         ]
       },

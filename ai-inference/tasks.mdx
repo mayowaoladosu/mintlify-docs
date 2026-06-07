@@ -1,0 +1,189 @@
+---
+title: "Tasks"
+description: "Run native AI tasks like image generation, speech, translation, rerank, and classification through the /v1/run endpoint."
+---
+
+The `/v1/run` endpoint runs models that do not fit the OpenAI chat or embeddings shape. Use it for image generation, text-to-speech, speech recognition, translation, summarization, rerank, classification, object detection, and image-to-text models.
+
+## When to use it
+
+| Endpoint | Use for |
+| --- | --- |
+| `/v1/chat/completions` | Text generation and chat. |
+| `/v1/embeddings` | Embeddings. |
+| `/v1/run` | All other tasks listed below. |
+
+The `model` field selects the task. Each task accepts a different payload shape, summarized below. Pass the model name from the catalog (for example `@cf/meta/m2m100-1.2b`).
+
+## Request shape
+
+All `/v1/run` requests use the same envelope:
+
+```bash
+curl https://console.layerrail.com/ai/v1/run \
+  -H "Authorization: Bearer $INFERENCE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "<model-name>",
+    ...task-specific fields
+  }'
+```
+
+## Text-to-image
+
+Generate an image from a text prompt. The response contains base64-encoded image bytes.
+
+```json
+{
+  "model": "@cf/stabilityai/stable-diffusion-xl-base-1.0",
+  "prompt": "A red panda riding a skateboard, studio lighting",
+  "width": 1024,
+  "height": 1024
+}
+```
+
+| Field | Description |
+| --- | --- |
+| `prompt` | Text description of the image to generate. |
+| `width` | Optional output width in pixels. |
+| `height` | Optional output height in pixels. |
+
+## Text-to-speech
+
+Generate speech audio from text. The response contains base64-encoded audio.
+
+```json
+{
+  "model": "@cf/myshell-ai/melotts",
+  "prompt": "Welcome to LayerRail.",
+  "lang": "en"
+}
+```
+
+## Automatic speech recognition
+
+Transcribe an audio file. Pass `audio` as an array of raw byte values.
+
+```json
+{
+  "model": "@cf/openai/whisper-large-v3-turbo",
+  "audio": [82, 73, 70, 70, ...],
+  "source_lang": "en"
+}
+```
+
+## Translation
+
+Translate text between languages.
+
+```json
+{
+  "model": "@cf/meta/m2m100-1.2b",
+  "text": "Hello, how are you?",
+  "source_lang": "en",
+  "target_lang": "fr"
+}
+```
+
+The response includes `translated_text`.
+
+## Summarization
+
+Summarize long text.
+
+```json
+{
+  "model": "@cf/facebook/bart-large-cnn",
+  "input_text": "...long article...",
+  "max_length": 200
+}
+```
+
+The response includes `summary`.
+
+## Rerank
+
+Rerank a list of documents against a query. Use this for retrieval pipelines.
+
+```json
+{
+  "model": "@cf/baai/bge-reranker-base",
+  "query": "How do I rotate a database password?",
+  "contexts": [
+    { "text": "Documentation for password rotation." },
+    { "text": "Unrelated marketing page." }
+  ],
+  "top_k": 3
+}
+```
+
+## Text classification
+
+Classify the input text and return labels with confidence scores.
+
+```json
+{
+  "model": "@cf/huggingface/distilbert-sst-2-int8",
+  "text": "I really enjoyed using this product."
+}
+```
+
+## Image classification and object detection
+
+Pass `image` as an array of raw byte values from the image file.
+
+```json
+{
+  "model": "@cf/microsoft/resnet-50",
+  "image": [137, 80, 78, 71, ...]
+}
+```
+
+```json
+{
+  "model": "@cf/facebook/detr-resnet-50",
+  "image": [137, 80, 78, 71, ...]
+}
+```
+
+Object detection responses include `label`, `score`, and a bounding `box` per detection.
+
+## Image-to-text
+
+Caption or describe an image. An optional `prompt` steers the description.
+
+```json
+{
+  "model": "@cf/llava-hf/llava-1.5-7b-hf",
+  "image": [137, 80, 78, 71, ...],
+  "prompt": "Describe what is happening in this scene."
+}
+```
+
+For multimodal chat models like Llama 3.2 Vision, pass the image as base64 and provide chat-style messages:
+
+```json
+{
+  "model": "@cf/meta/llama-3.2-11b-vision-instruct",
+  "image": "<base64-encoded-image>",
+  "messages": [
+    { "role": "user", "content": "What is in this picture?" }
+  ]
+}
+```
+
+## Errors
+
+| Status | Cause |
+| --- | --- |
+| `400` `InvalidRequest` | The `model` field is missing, disabled, or not eligible for the native run route. |
+| `401` `InvalidCredentials` | The bearer token is missing or invalid. |
+| `403` `ProjectInactive` | The project for this API key is not active. |
+| `501` `NotEnabled` | The provider for native tasks is not enabled for this deployment. |
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Overview" icon="book-open" href="/ai-inference/overview" />
+  <Card title="Playground" icon="play" href="/ai-inference/playground" />
+</CardGroup>
