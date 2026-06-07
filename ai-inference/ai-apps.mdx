@@ -1,0 +1,121 @@
+---
+title: "AI Apps"
+description: "Create managed agents on top of LayerRail inference models, attach project knowledge bases, and expose them through a public agent endpoint."
+---
+
+AI Apps lets you publish a managed agent on top of LayerRail's text generation models without operating your own orchestration layer. Each app combines a model, a system prompt, and an optional project knowledge base, and exposes a public LayerRail endpoint that you call with an inference API key.
+
+## What it is for
+
+Use AI Apps when you want to:
+
+- Stand up a chat assistant from a starter template instead of writing prompt and retrieval code.
+- Ground responses in your own documents through a project knowledge base.
+- Share a single agent URL across multiple applications and keep the prompt configuration server-side.
+- Track usage, latency, and errors per agent without building your own logging.
+
+For raw chat or embedding requests, keep using the [model endpoints](/ai-inference/overview) instead.
+
+## Templates
+
+When you create an app you pick one of the built-in templates. The template seeds the system prompt and enables knowledge base retrieval, but every field can be overridden.
+
+| Template | Use it for |
+| --- | --- |
+| Support assistant | Answering product questions from docs and support notes. |
+| Docs search | Turning technical documentation into API-ready answers. |
+| Sales engineer | Explaining product fit, tradeoffs, and implementation paths. |
+| Game server helper | Helping customers pick server sizes and troubleshoot hosting basics. |
+
+## Create an agent
+
+<Steps>
+  <Step title="Open AI Apps">
+    In your project, open **AI Inference** and choose the **AI Apps** tab.
+  </Step>
+  <Step title="Pick a template">
+    Choose the template that best matches the assistant you want.
+  </Step>
+  <Step title="Choose a model">
+    Pick any text generation model from the project's inference catalog.
+  </Step>
+  <Step title="Attach a knowledge base (optional)">
+    Select an existing knowledge base if you want the agent to ground its answers in project documents.
+  </Step>
+  <Step title="Adjust the prompt and slug">
+    Override the system prompt if the template default does not fit. Set a custom public slug to control the agent URL.
+  </Step>
+  <Step title="Create the app">
+    Save the agent. The show page lists the public endpoint and recent calls.
+  </Step>
+</Steps>
+
+## Knowledge bases
+
+Knowledge bases hold the documents an agent can retrieve from. You can create knowledge bases independently and attach them to one or more agents.
+
+<Steps>
+  <Step title="Create a knowledge base">
+    From the **AI Apps** tab, create a knowledge base with a name and an optional description.
+  </Step>
+  <Step title="Add a document">
+    Add a document by pasting text or by pointing at a URL source. Give it a clear title — the agent uses the title when it cites context.
+  </Step>
+  <Step title="Let chunking run">
+    Documents are split into overlapping chunks automatically. At query time the agent scores chunks against the user message and includes the top matches in the model prompt.
+  </Step>
+</Steps>
+
+<Info>
+  Documents accept text or URL sources. Updates to a document re-chunk its content automatically.
+</Info>
+
+## Call the agent endpoint
+
+Each agent has a public LayerRail endpoint of the form `/ai/v1/agents/<slug>/messages`. Authenticate with an inference API key from the same project.
+
+```bash
+curl https://console.layerrail.com/ai/v1/agents/support-assistant/messages \
+  -H "Authorization: Bearer $INFERENCE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "messages": [
+      { "role": "user", "content": "How do I restore a Postgres backup?" }
+    ]
+  }'
+```
+
+You can also send a single message with `{"message": "..."}`. Optional `temperature`, `top_p`, and `max_tokens` are forwarded to the underlying model.
+
+The response includes the agent metadata, the retrieved knowledge chunks, the model's text output, and the raw provider response:
+
+```json
+{
+  "agent": {
+    "id": "...",
+    "name": "support-assistant",
+    "model": "@cf/meta/llama-3.1-8b-instruct"
+  },
+  "context": [
+    {
+      "document_id": "...",
+      "title": "Backup and restore",
+      "content": "..."
+    }
+  ],
+  "output": "To restore a backup, ...",
+  "response": { "choices": [ /* provider payload */ ] }
+}
+```
+
+<Warning>
+  Inference API keys are project secrets. Do not embed them in frontend code — call the agent endpoint from your backend.
+</Warning>
+
+## Monitor usage
+
+The agent show page lists recent calls with status (`ok` or `error`), prompt and completion tokens, and latency in milliseconds. Use it to spot failing requests, slow models, or noisy clients.
+
+## Delete an app
+
+From the agent show page, choose **Delete** to remove the app and its event history. The endpoint stops accepting requests immediately. Attached knowledge bases are not deleted and stay available for other agents.
