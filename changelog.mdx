@@ -5,6 +5,47 @@ description: "LayerRail product updates, infrastructure releases, billing improv
 
 Track the LayerRail build history here. This changelog starts from the first visible LayerRail product commits in the repository history.
 
+## Week of June 7-12, 2026
+
+This week moved LayerRail from a compute console into a broader cloud platform surface: AI app endpoints, domain registration workflows, Azure-backed infrastructure, prepaid Game VPS subscriptions, and cleaner production operations.
+
+### New
+
+- **AI Apps layer.** Added a managed AI app surface for creating product-facing AI endpoints with prompts, model selection, API access, and project-level association.
+- **App endpoint pages.** Added endpoint detail pages with usage examples, API URLs, and responsive layouts for developers integrating AI endpoints into their own products.
+- **Domain registration foundation.** Added domain search, cart, contact profiles, registration flow, DNS zone creation, billing reconciliation, and domain detail views.
+- **Domain registrar phase two and three workflows.** Added transfer flows, renewal handling, DNSSEC direction, domain forwarding, project attachment, abuse controls, email alert foundations, API-oriented domain tools, bulk workflows, sub-account/team controls, domain-to-app deployment hooks, bundle concepts, and ICANN evaluation notes.
+- **Admin controls for domains.** Added pricing controls, TLD enable/disable controls, and admin-facing domain management hooks.
+- **Azure compute provider.** Added the first Azure-backed compute provider implementation for new infrastructure deployments.
+- **Azure deployment workflow.** Added Azure production deployment support, including worker health entrypoints and namespace/autoload fixes.
+- **Azure-backed Game VPS plans.** Added Windows Game VPS plans backed by Azure infrastructure.
+- **Prepaid Game VPS checkout.** Added monthly prepaid Game VPS checkout through Polar, with per-plan product mapping.
+- **Windows Game VPS access fields.** Game VPS creation now collects a Windows username and password, validates them, stores the password securely, and passes credentials into provisioning.
+- **RDP profile downloads.** Game VPS detail pages now provide an `.rdp` download once the server has an IP address.
+
+### Updated
+
+- **Lower VM pricing presentation.** Adjusted Azure-backed plan pricing to keep entry plans approachable while Azure becomes the default provider for new deployments.
+- **Compute catalog alignment.** Updated the compute catalog to match available Azure SKUs, images, and regions more closely.
+- **Longer init scripts.** Increased init script length limits so larger bootstrap scripts can be used during VM creation.
+- **Cleaner Game VPS labels.** Removed provider-facing labels from Game VPS locations and image choices so the console presents LayerRail product names instead of upstream provider names.
+- **Game VPS icons.** Replaced the rocket icon with a controller-style icon across the sidebar, dashboard card, and Game VPS empty state.
+- **Streak badge polish.** Tightened the dashboard login streak badge so it is closer to a compact profile-style badge.
+- **Brand assets.** Added new LayerRail branding assets, including banner and logo package updates.
+- **Cloud site study cleanup.** Fixed product naming in the LayerRail cloud website study.
+
+### Fixed
+
+- **Dashboard crash from missing icon names.** Fixed invalid dashboard icons that caused 500 errors on project dashboard pages.
+- **AI app project associations.** Fixed AI app ownership and project association behavior.
+- **AI app endpoint crashes.** Fixed app endpoint show page errors and improved responsive behavior.
+- **Domain dashboard stability.** Fixed domain dashboard errors and schema-cache issues after domain tables changed.
+- **Domain transfer icon.** Fixed the transfer icon used in the domain UI.
+- **Admin noise.** Hid active page noise from the admin home screen so production operations are easier to scan.
+- **Linode PostgreSQL fallback.** Fixed PostgreSQL size fallback behavior for existing Linode-backed services.
+- **Linode provisioning hardening.** Hardened service provisioning and improved failure reporting for existing Linode-backed Kubernetes, PostgreSQL, and load balancer paths.
+- **Game VPS checkout schema cache.** Fixed stale schema cache behavior that could break Game VPS checkout after deployment.
+
 ## Week of June 1–6, 2026
 
 A focused week on provisioning reliability across Kubernetes, PostgreSQL, and load balancers, plus billing polish and a cleaner AI inference experience.
