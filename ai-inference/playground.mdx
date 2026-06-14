@@ -1,11 +1,11 @@
 ---
 title: "AI inference playground"
-description: "Test LayerRail-hosted chat and embedding models from the console, compare outputs, and copy generated code snippets to use in your app."
+description: "Test LayerRail-hosted chat, embedding, image, speech, and classification models from the console, then copy generated code snippets to use in your app."
 ---
 
-The inference playground lets you send test prompts to an available text generation endpoint.
+The inference playground sends test requests to any model in the catalog. The form adapts to the capability of the selected model.
 
-## Start a chat
+## Start a request
 
 <Steps>
   <Step title="Open AI inference">
@@ -18,39 +18,78 @@ The inference playground lets you send test prompts to an available text generat
     Choose the **Playground** tab.
   </Step>
   <Step title="Pick a model and key">
-    Choose an inference endpoint and an API key.
+    Choose an inference endpoint and an API key. A hint under the model picker describes the task.
   </Step>
-  <Step title="Send a message">
-    Enter a prompt and submit the request.
+  <Step title="Provide input">
+    Enter a prompt, upload a file, or add extra context depending on the task.
+  </Step>
+  <Step title="Submit">
+    Submit the request and inspect the response below the form.
   </Step>
 </Steps>
 
+## How the form adapts
+
+The playground picks the request shape from the selected model's capability:
+
+| Capability | Request goes to | What you provide |
+| --- | --- | --- |
+| Text generation | `/v1/chat/completions` | Prompt, optional system message, optional images. |
+| Embeddings | `/v1/embeddings` | Input text. |
+| Text-to-image | `/v1/run` | Prompt and optional image width / height. |
+| Text-to-speech | `/v1/run` | Prompt and source language. |
+| Translation | `/v1/run` | Prompt, source language, target language. |
+| Summarization | `/v1/run` | Prompt and optional max output tokens. |
+| Rerank | `/v1/run` | Query as the prompt plus one document per line in **Documents / extra context**. |
+| Automatic speech recognition | `/v1/run` | Audio file upload and optional source language. |
+| Image classification, object detection, image-to-text | `/v1/run` | Image file upload and optional prompt. |
+| Image Text to Text | `/v1/run` | Image file upload and prompt. |
+
+See [Tasks](/ai-inference/tasks) for the full request shape for each capability.
+
 ## Advanced settings
 
-Advanced settings can include:
+Common settings:
 
-- Temperature.
-- Top-p.
-- Maximum tokens.
-- Streaming mode.
-- System prompt.
+- **Temperature** — Lower for deterministic answers, higher for varied responses.
+- **Top-p** — Nucleus sampling cutoff.
+- **Maximum tokens** — Caps output length. Also controls summary length for summarization.
+- **Streaming mode** — Streams tokens for text generation that is OpenAI-compatible.
+- **System prompt** — Used for chat models only.
 
-Use lower temperature for deterministic answers and higher temperature for more varied responses.
+Task-specific settings appear when relevant:
+
+- **Source language** and **target language** — Translation, speech recognition, and text-to-speech.
+- **Top K** — Number of results to return for rerank.
+- **Image width** and **image height** — Output dimensions for text-to-image.
+- **Documents / extra context** — One document per line for rerank.
 
 ## Files
 
-If file upload is available for the selected endpoint, attach files only when the model supports that input type.
+The file picker enables and changes the accepted file types based on the selected model:
 
-<Info>
-  Embedding endpoints are not chat models. Use text generation endpoints in the playground.
-</Info>
+| Capability | Accepted files |
+| --- | --- |
+| Automatic speech recognition | `.wav`, `.mp3`, `.m4a`, `.ogg`, `.webm` |
+| Image classification, object detection, image-to-text, vision chat | `.jpg`, `.jpeg`, `.png`, `.webp` |
+| Other capabilities | Disabled |
+
+## Output rendering
+
+The playground renders the response based on the task:
+
+- Generated images and audio render inline.
+- Transcription, translation, summarization, and image descriptions render as text.
+- Classification, object detection, and rerank render as label and score lists.
+- Embeddings show vector shape and a preview.
 
 ## Troubleshooting
 
 | Error | What to check |
 | --- | --- |
-| `400` response | Confirm the selected model supports the request shape. |
+| `400` response | Confirm the selected model is enabled for the requested task and that required fields (prompt, audio, image, contexts) are set. |
 | Missing API key | Create an inference API key first. |
+| "Please upload an audio file" / "Please upload an image file" | The selected task requires a file input. |
+| "Add at least one context document for rerank" | Add documents in **Documents / extra context**, one per line. |
 | Empty response | Try a shorter prompt or a different model. |
 | Unauthorized | Make sure the key belongs to the current project. |
-
