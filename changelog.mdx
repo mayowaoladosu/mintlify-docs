@@ -5,6 +5,41 @@ description: "LayerRail product updates, infrastructure releases, billing improv
 
 Track the LayerRail build history here. This changelog starts from the first visible LayerRail product commits in the repository history.
 
+
+## Week of June 13-19, 2026
+
+This week focused on improving the Deploy platform, enhancing Kubernetes node joining and cleanup operations, extending Cloudflare AI integrations, and refining deployment, billing, and provider infrastructure management.
+
+### New
+
+- **LayerRail Deploy platform upgrade.** Major rework of the deploy platform including building deploy apps as container images, expanding build packs, and a new deploy-specific GitHub connection flow.
+- **Unified AI models.** Added Cloudflare unified AI models and expanded the Cloudflare AI model catalog.
+- **Intercom support.** Added Intercom support triggers.
+- **PgBouncer management.** Implemented simple PgBouncer systemd service configuration handling for production databases.
+- **Deploy schema and imports.** Added cached schema exposure for new deploy fields and reworked deploy import and app domain flows.
+- **Multiple Game VPS subscriptions.** Added the ability to allow multiple Game VPS subscriptions.
+
+### Updated
+
+- **Load balancer UI.** Updated branding and refreshed the load balancer waiting page.
+- **Deploy and domain workflows.** Rebuilt deploy and domain checkout flows, and lowered core TLD pricing.
+- **Domain TLD sync.** Synced the domain TLD catalog directly from the registrar and cleaned up the domain management UI.
+- **AI playground limits.** Tightened the AI playground model list and defined default max output tokens for responses.
+- **Resource deletion.** Ensured billing stops immediately upon resource deletion.
+- **Kubernetes operations.** Switched Azure Kubernetes joins to use private endpoints and local kubeconfigs, separating Kubernetes nftables from load balancers. Added steps to set node addresses and accept ready nodes post-join.
+- **Azure infrastructure.** Updated Azure to use stable data disk paths and retry on transient VM creation failures. Allowed using supported Azure disk delete APIs.
+
+### Fixed
+
+- **Kubernetes cleanup and scaling.** Fixed Kubernetes deletion retry stalls, node pool scale tracking, and load balancer cleanup on deletion. Addressed stuck Kubernetes creation issues.
+- **AI playground stability.** Fixed Cloudflare AI catalog presentation, Azure cleanup, and various AI playground errors.
+- **Service teardowns.** Fixed broader service cleanup processes to ensure consistent resource deletion.
+- **Checkout and reconciliation.** Improved Game VPS checkout rescue scripts, handling of integer checkout amounts, and reconciliation diagnostics. Broadened Polar checkout reconciliation fields.
+- **Deploy UI rendering.** Fixed deploy GitHub import rendering and deploy table rendering issues.
+- **Provider configurations.** Fixed Azure VM cleanup, Game VPS plan ladder, and Game VPS detail routing.
+- **Timeout handling.** Handled NameSilo timeout errors cleanly.
+
+
 ## Week of June 7-12, 2026
 
 This week moved LayerRail from a compute console into a broader cloud platform surface: AI app endpoints, domain registration workflows, Azure-backed infrastructure, prepaid Game VPS subscriptions, and cleaner production operations.
