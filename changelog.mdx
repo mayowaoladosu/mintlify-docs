@@ -5,6 +5,31 @@ description: "LayerRail product updates, infrastructure releases, billing improv
 
 Track the LayerRail build history here. This changelog starts from the first visible LayerRail product commits in the repository history.
 
+## Week of June 20-26, 2026
+
+This week focused on hardening the LayerRail console deployment path, improving Azure-backed resource reliability, and tightening the user-facing console experience across Game VPS, PostgreSQL, Kubernetes, load balancers, Intercom support, and regional availability.
+
+### New
+
+- **Intercom support in the console.** Integrated the Intercom messenger and refactored project sidebar navigation so users can reach support from inside the console without leaving their project flow.
+- **Admin force-destroy controls.** Added admin-side force destroy controls for stuck resources so operations can clear orphaned or stalled infrastructure faster.
+- **Automatic database migrations on startup.** Added web startup migration handling and deployment workflow migration steps so production services can apply schema changes during deploys more reliably.
+- **More Azure locations.** Added South Africa North and UK South to the Azure-backed console location list.
+
+### Updated
+
+- **Azure Game VPS provisioning.** Retried Azure Game VPS network convergence so NIC, subnet, and virtual network provisioning waits more safely for Azure resources to reach a usable state.
+- **Azure region catalog.** Removed ineligible Azure locations, including West Europe and North Europe, to keep the console aligned with currently supported subscription capacity.
+- **Repository references.** Updated repository URL references to the LayerRail GitHub organization.
+- **CI and Azure deployment workflow.** Updated the Azure deployment path with migration container fixes, mandatory encryption/session secrets, Linux container OS selection, and corrected container command syntax.
+
+### Fixed
+
+- **PostgreSQL failure visibility.** PostgreSQL VM failure states now bubble up properly, and the loader behavior was fixed on Windows.
+- **Load balancer nil-location crashes.** Guarded `LoadBalancer#path` and `LoadBalancer#display_location` against missing location data so the console does not crash on incomplete or transitional records.
+- **PostgreSQL cron setup.** Ensured the `pg_cron` package is installed and `include_dir` is active universally.
+- **Procfile formatting.** Fixed web process formatting so runtime process startup is cleaner.
+
 
 ## Week of June 13-19, 2026
 
