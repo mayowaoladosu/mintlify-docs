@@ -1,31 +1,188 @@
 ---
 title: "Pricing"
-description: "How LayerRail bills virtual machines, managed PostgreSQL, Kubernetes clusters, networking, GitHub runners, and AI inference usage."
+description: "LayerRail pricing for compute, Game VPS, managed PostgreSQL, Kubernetes, networking, GitHub runners, domains, and AI inference models."
 ---
 
-LayerRail pricing is based on the resources you create inside a project.
+Updated on: July 1, 2026
 
-## Resource-based billing
+LayerRail pricing is usage-based. A project is billed for the resources it creates, the time those resources run, and metered usage such as AI inference tokens, bandwidth, storage, and domain operations.
 
-Common billed resources include:
+<Note>
+  Prices below are the public pricing guide for the current LayerRail platform surface. Final checkout pages and monthly invoices are the source of truth for exact totals because region, storage, HA options, promotions, taxes, and usage can change the final bill.
+</Note>
 
-- Virtual machines.
-- GPU virtual machines.
-- Managed PostgreSQL.
-- Kubernetes worker nodes.
-- Load balancers.
-- Storage and bandwidth where applicable.
-- AI inference usage.
+## What LayerRail bills for
 
-## Start small
+| Product area | Billing model | Notes |
+| --- | --- | --- |
+| Virtual machines | Per running resource | Compute, storage, public IPv4, GPUs where selected, and related usage. |
+| Game VPS | Fixed plan pricing | Windows VPS plans billed by selected package. |
+| Managed PostgreSQL | Per running resource | vCPU, storage, high availability replicas, backups, and related infrastructure. |
+| Managed Kubernetes | Per cluster and worker capacity | Control plane, worker nodes, node storage, load balancers, and related usage. |
+| Networking | Per provisioned resource or usage | Load balancers, public IPv4, firewall-backed networking, and bandwidth where applicable. |
+| GitHub runners | Per runner capacity and usage | Project-scoped runner compute used for CI workloads. |
+| Domains | Per domain operation | Registration, renewal, transfer, DNS management, and provider costs where applicable. |
+| AI inference | Per token or model operation | Premium Azure Foundry models are metered. Cloudflare Workers AI models are available through the LayerRail AI surface with project quota and usage tracking. |
 
-Use small plans for prototypes and upgrade when usage grows.
+## Billing rules
 
-<Tip>
-  For current prices, open the LayerRail console and review the create page for the resource you want to launch.
-</Tip>
+- Compute resources start billing when provisioning begins and stop billing when deletion is completed or the resource is marked deleted by the control plane.
+- Usage-based AI charges are recorded per project and attached to the project invoice.
+- Free AI quota is consumed before paid inference charges where eligible.
+- Outstanding invoices remain visible until paid.
+- If a project has no valid payment method and has unpaid invoices, services can be restricted, suspended, or deleted according to the billing terms.
+- Coupons and discounts are not applied to outstanding invoice settlement unless LayerRail explicitly issues a billing credit.
 
-## Billing verification
+## Virtual machines
 
-Some projects require billing verification before infrastructure can be created.
+Virtual machines are billed from the selected plan, region, storage, public IP, and optional GPU configuration.
 
+| Component | How it is priced |
+| --- | --- |
+| vCPU and memory | Included in the VM plan shown during creation. |
+| Storage | Included or metered depending on the plan and storage size. |
+| Public IPv4 | Included where marked, otherwise billed as a public IP resource. |
+| GPU | Metered when a GPU plan is selected. |
+| Bandwidth | May be metered where applicable. |
+
+Use the VM create page in the console for exact regional plan totals before launch.
+
+## Game VPS
+
+Game VPS plans are fixed packages for game communities and Windows-based server workloads.
+
+| Plan | Monthly price |
+| --- | ---: |
+| Starter | $4.00/mo |
+| Community | $6.00/mo |
+| Squad | $10.00/mo |
+| Growth | $20.00/mo |
+| Serious | $50.00/mo |
+| Arena | $95.00/mo |
+
+Game VPS checkout shows the exact payment amount before provisioning.
+
+## Managed PostgreSQL
+
+Managed PostgreSQL pricing is based on the selected database flavor, vCPU size, storage, region, and availability mode.
+
+| Component | How it is priced |
+| --- | --- |
+| Compute | vCPU-based pricing by selected database size. |
+| Storage | Metered by provisioned storage size. |
+| High availability | Additional standby capacity is billed when enabled. |
+| Backups | Backup storage and retention may affect usage. |
+| Networking | Public/private networking and firewall-related usage may apply. |
+
+PostgreSQL logs, backups, HA, and networking are part of the managed service experience. The create page and invoice show the exact selected size and usage.
+
+## Managed Kubernetes
+
+Kubernetes billing includes the cluster control plane, worker nodes, node storage, and networking resources used by the cluster.
+
+| Component | How it is priced |
+| --- | --- |
+| Control plane | Billed for managed cluster control plane capacity. |
+| Worker nodes | Billed by selected worker size and node count. |
+| Node storage | Metered by provisioned worker storage. |
+| Load balancers | Billed when services expose public traffic. |
+| Public IPs and bandwidth | Metered where applicable. |
+
+Scaling worker nodes increases the project bill. Deleting a cluster stops new cluster billing after cleanup completes.
+
+## Networking
+
+Networking resources can add cost when they reserve public capacity or process traffic.
+
+| Resource | Pricing behavior |
+| --- | --- |
+| Load balancers | Billed while provisioned. |
+| Public IPv4 | Billed when not included in the selected plan. |
+| Firewalls | Included with networking controls unless attached usage requires billable infrastructure. |
+| Bandwidth | May be metered depending on product and region. |
+
+## GitHub runners
+
+LayerRail GitHub runners are billed by runner capacity and usage. Use them when you want CI workloads to run on project-managed infrastructure instead of shared hosted runners.
+
+Runner pricing depends on runner type, region, duration, and selected compute profile.
+
+## Domains
+
+Domain pricing depends on the TLD and operation.
+
+| Operation | Pricing behavior |
+| --- | --- |
+| Registration | One-time yearly registration price for the selected TLD. |
+| Renewal | Yearly renewal price for the selected TLD. |
+| Transfer | Transfer price where supported by the registry/provider. |
+| DNS management | Included for LayerRail-managed DNS zones unless additional infrastructure is attached. |
+
+Core acquisition TLDs can be priced lower for launch and customer acquisition. Some ccTLDs may require a separate registry provider and may have different rules.
+
+## AI inference
+
+LayerRail AI has two provider classes:
+
+| Provider | Use case | Billing |
+| --- | --- | --- |
+| Azure Foundry | Premium GPT, Claude, DeepSeek, Mistral, Grok, Llama, and Phi models deployed through LayerRail. | Metered by input and output tokens. |
+| Cloudflare Workers AI | Open and utility models for text, speech, embeddings, image, translation, and classification workloads. | Usage tracked through project quota and LayerRail billing policy. |
+
+### Free quota
+
+Projects currently receive `100,000` free inference tokens. Free quota refreshes monthly and is consumed before eligible paid inference usage.
+
+### Premium text model pricing
+
+Prices are shown per 1M tokens.
+
+| Model | Provider | Context | Input | Output |
+| --- | --- | ---: | ---: | ---: |
+| GPT-5 | Azure Foundry | 400K | $1.75 | $14.00 |
+| GPT-5 Mini | Azure Foundry | 400K | $0.35 | $2.80 |
+| GPT-5 Nano | Azure Foundry | 400K | $0.08 | $0.60 |
+| GPT-5.5 | Azure Foundry | 400K | $2.50 | $20.00 |
+| GPT-5.4 | Azure Foundry | 400K | $2.00 | $16.00 |
+| GPT-5.4 Mini | Azure Foundry | 400K | $0.45 | $3.60 |
+| GPT-5.4 Nano | Azure Foundry | 400K | $0.12 | $0.90 |
+| GPT-5.2 | Azure Foundry | 400K | $1.80 | $14.40 |
+| o3 | Azure Foundry | 200K | $2.80 | $11.20 |
+| o4 Mini | Azure Foundry | 200K | $0.55 | $2.20 |
+| Claude Opus 4.8 | Azure Foundry | 1M | $7.00 | $35.00 |
+| Claude Sonnet 5 | Azure Foundry | 1M | $4.20 | $21.00 |
+| Claude Sonnet 4.6 | Azure Foundry | 1M | $4.20 | $21.00 |
+| Claude Haiku 4.5 | Azure Foundry | 200K | $1.40 | $7.00 |
+| DeepSeek V4 Flash | Azure Foundry | 128K | $0.40 | $1.60 |
+| DeepSeek V4 Pro | Azure Foundry | 128K | $0.80 | $3.20 |
+| Mistral Large 3 | Azure Foundry | 128K | $2.80 | $8.40 |
+| Grok 4 | Azure Foundry | 256K | $3.00 | $15.00 |
+| Llama 4 Scout 17B | Azure Foundry | 128K | $0.30 | $0.90 |
+| Phi-4 Mini | Azure Foundry | 128K | $0.10 | $0.40 |
+
+### Cloudflare Workers AI model catalog
+
+Cloudflare Workers AI models are exposed through the same LayerRail AI surface for eligible projects.
+
+| Capability | Available models |
+| --- | --- |
+| Text generation | Llama 3.2 3B Instruct, GPT OSS 20B, GPT OSS 120B, Gemma SEA-LION v4 27B IT, Kimi K2.5, DeepSeek R1 Distill Qwen 32B, Gemma, Granite, Llama 2, Llama 3, Llama 3.1, Llama 3.2, Llama 3.3, Llama 4 Scout, Phi-2, SQLCoder, Mistral, Hermes, Kimi K2.6, Kimi K2.7 Code, NVIDIA Nemotron, Qwen, QwQ, GLM. |
+| Embeddings | BGE Base English v1.5, BGE Large English v1.5, BGE M3, BGE Small English v1.5, EmbeddingGemma 300M, PLaMo Embedding 1B, Qwen3 Embedding 0.6B. |
+| Speech to text | Flux, nova-3, Whisper, Whisper Large v3 Turbo, whisper-tiny-en. |
+| Text to speech | aura-1, Aura 2 English, Aura 2 Spanish, MeloTTS. |
+| Text to image | Flux 1 Schnell, Flux 2 Dev, Flux 2 Klein, SDXL Lightning, Lucid Origin, Phoenix 1.0, DreamShaper, Stable Diffusion. |
+| Vision and image understanding | LLaVA 1.5 7B, UForm Gen2 Qwen 500M, ResNet-50, DETR ResNet-50. |
+| Classification and reranking | BGE Reranker Base, DistilBERT SST-2. |
+| Summarization | BART Large CNN. |
+| Translation | IndicTrans2 EN to Indic 1B, M2M100 1.2B. |
+| Voice activity detection | Smart Turn v2. |
+
+## Invoices and payment
+
+LayerRail invoices show the resources, usage period, unit price, usage amount, and total cost for the billing period. Previous invoices remain available in the billing page.
+
+If an invoice is unpaid, the project owner can pay it from the billing page. Outstanding invoice payments use fixed invoice amounts.
+
+## Questions
+
+For pricing, invoices, credits, or payment issues, contact [support@layerrail.com](mailto:support@layerrail.com).
