@@ -1,11 +1,11 @@
 ---
 title: "Pricing"
-description: "LayerRail pricing for compute, Game VPS, managed PostgreSQL, Kubernetes, networking, GitHub runners, domains, and AI inference models."
+description: "LayerRail pricing for compute, Game VPS, managed PostgreSQL, Kubernetes, networking, GitHub runners, and AI inference models."
 ---
 
 Updated on: July 1, 2026
 
-LayerRail pricing is usage-based. A project is billed for the resources it creates, the time those resources run, and metered usage such as AI inference tokens, bandwidth, storage, and domain operations.
+LayerRail pricing is usage-based. A project is billed for the resources it creates, the time those resources run, and metered usage such as AI inference tokens, bandwidth, and storage.
 
 <Note>
   Prices below are the public pricing guide for the current LayerRail platform surface. Final checkout pages and monthly invoices are the source of truth for exact totals because region, storage, HA options, promotions, taxes, and usage can change the final bill.
@@ -21,7 +21,6 @@ LayerRail pricing is usage-based. A project is billed for the resources it creat
 | Managed Kubernetes | Per cluster and worker capacity | Control plane, worker nodes, node storage, load balancers, and related usage. |
 | Networking | Per provisioned resource or usage | Load balancers, public IPv4, firewall-backed networking, and bandwidth where applicable. |
 | GitHub runners | Per runner capacity and usage | Project-scoped runner compute used for CI workloads. |
-| Domains | Per domain operation | Registration, renewal, transfer, DNS management, and provider costs where applicable. |
 | AI inference | Per token or model operation | Premium Azure Foundry models are metered. Cloudflare Workers AI models are available through the LayerRail AI surface with project quota and usage tracking. |
 
 ## Billing rules
@@ -106,19 +105,6 @@ Networking resources can add cost when they reserve public capacity or process t
 LayerRail GitHub runners are billed by runner capacity and usage. Use them when you want CI workloads to run on project-managed infrastructure instead of shared hosted runners.
 
 Runner pricing depends on runner type, region, duration, and selected compute profile.
-
-## Domains
-
-Domain pricing depends on the TLD and operation.
-
-| Operation | Pricing behavior |
-| --- | --- |
-| Registration | One-time yearly registration price for the selected TLD. |
-| Renewal | Yearly renewal price for the selected TLD. |
-| Transfer | Transfer price where supported by the registry/provider. |
-| DNS management | Included for LayerRail-managed DNS zones unless additional infrastructure is attached. |
-
-Core acquisition TLDs can be priced lower for launch and customer acquisition. Some ccTLDs may require a separate registry provider and may have different rules.
 
 ## AI inference
 
