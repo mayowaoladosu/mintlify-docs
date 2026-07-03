@@ -23,7 +23,7 @@ LayerRail pricing is usage-based. A project is billed for the resources it creat
 | Block volumes | Per provisioned volume storage | Standalone block volumes billed by provisioned GB over time. |
 | Backups | Per backup storage usage | Backup storage billed by retained GB over time. |
 | Edge | Per provisioned Edge service | Edge services are billed while active. Bandwidth and request usage may be added as metering expands. |
-| Monitoring | Per metrics/logs backend | Metrics storage, metrics ingestion, log storage, and log ingestion are billable. |
+| Monitoring | Per backend and rule | Metrics storage, log storage, ingestion, uptime checks, and alert rules are billable. |
 | Networking | Per provisioned resource or usage | Load balancers, public IPv4, firewall-backed networking, and bandwidth where applicable. |
 | GitHub runners | Per runner minute, cache, and concurrency | Project-scoped runner compute used for CI workloads. |
 | AI inference | Per token or model operation | Premium Azure Foundry models are metered. Cloudflare Workers AI models are available through the LayerRail AI surface with project quota and usage tracking. |
@@ -145,7 +145,7 @@ Edge services currently cover origin routing, hostname mapping, and cache mode c
 
 ## Monitoring
 
-LayerRail Monitoring is billed separately for metrics and logs infrastructure. Metrics and log backends are managed resources and can be attached to project services as observability features roll out.
+LayerRail Monitoring is billed separately for metrics, logs, uptime checks, and alerting. Metrics and log backends are managed resources, while uptime checks and alert rules are billed as always-on monitoring controls.
 
 Monthly equivalents below use the platform invoice cap of `672` hours per month. Exact invoices are calculated per minute.
 
@@ -155,6 +155,8 @@ Monthly equivalents below use the platform invoice cap of `672` hours per month.
 | Metrics ingestion | Backend-month | $2.80/mo |
 | Log storage | GB-month | $0.0373/GB-mo |
 | Log ingestion | Backend-month | $2.80/mo |
+| Uptime check | Check-month | $0.93/mo |
+| Alert rule | Rule-month | $0.47/mo |
 
 ## GitHub runners
 
