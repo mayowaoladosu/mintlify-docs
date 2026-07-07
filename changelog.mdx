@@ -5,6 +5,41 @@ description: "LayerRail product updates, infrastructure releases, billing improv
 
 Track the LayerRail build history here. This changelog starts from the first visible LayerRail product commits in the repository history.
 
+## Week of June 27-July 3, 2026
+
+This week expanded LayerRail beyond core compute, databases, and Kubernetes into a broader cloud platform surface: backups, block volumes, object storage, edge services, monitoring, and a stronger GitHub runners experience. The work also focused on cleaning up production logs, tightening billing coverage, and making the console navigation easier to scan as more products are added.
+
+### New
+
+- **Full monitoring product flow.** Added uptime checks, alerts, incidents, logs, metrics, and notification channels so teams can track service health from inside LayerRail.
+- **Project backups dashboard.** Added a project-level backups surface for managing snapshots and recovery workflows across services.
+- **VM backup snapshot and restore engine.** Added VM backup creation and restore flows so compute instances can be protected and recovered more predictably.
+- **Project volumes dashboard.** Added standalone block volume management as the foundation for attachable storage.
+- **Object bucket service.** Added LayerRail object storage with bucket creation, access credentials, assigned MinIO cluster support, gateway URLs, and repair tooling.
+- **Edge service product.** Added an edge services surface with DNS routing and proxy support for LayerRail-managed edge endpoints.
+- **GitHub runners console upgrade.** Reworked the GitHub runners console to better support managed runner workflows.
+
+### Updated
+
+- **Sidebar product sections.** Reorganized the project sidebar into product groups so the console remains usable as backups, buckets, monitoring, volumes, and edge services are added.
+- **Object storage gateway URLs.** Added public object gateway URLs and split Cloudflare gateway tokens so object storage routing can be managed more safely.
+- **MinIO bootstrap and cluster selection.** Added MinIO bootstrap support and updated object storage to prefer assigned MinIO clusters for bucket provisioning.
+- **Storage billing coverage.** Added billing rates for buckets, backups, and new Azure regional coverage across Kubernetes and PostgreSQL.
+- **Azure regional billing.** Added rates for Azure South Africa North and UK South so pricing aligns with newly available locations.
+- **Edge routing.** Pointed edge DNS at the Render proxy target and routed edge services through the LayerRail proxy path.
+- **Monitoring pricing docs.** Updated the docs pricing surface to include monitoring uptime checks and alerts.
+
+### Fixed
+
+- **Object storage DNS endpoints.** Fixed bucket endpoint generation and DNS behavior for object storage routes.
+- **Bucket operations.** Added failed bucket cleanup, bucket repair arguments, and a repair command for stuck bucket records.
+- **Bucket and edge delete forms.** Fixed delete forms for buckets and edge services so cleanup actions submit correctly.
+- **Worker noise.** Quieted transient worker, mesh health, and raw SSH status errors so production logs are easier to read.
+- **Backup and block volume schema cache.** Refreshed schema cache for new block volume and monitoring fields.
+- **Monitoring icons.** Replaced unsupported icon names so monitoring pages render reliably.
+- **Edge retry behavior.** Added retry actions and audit event support for edge service recovery.
+
+
 ## Week of June 20-26, 2026
 
 This week focused on hardening the LayerRail console deployment path, improving Azure-backed resource reliability, and tightening the user-facing console experience across Game VPS, PostgreSQL, Kubernetes, load balancers, Intercom support, and regional availability.
