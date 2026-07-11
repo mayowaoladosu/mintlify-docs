@@ -5,6 +5,27 @@ description: "LayerRail product updates, infrastructure releases, billing improv
 
 Track the LayerRail build history here. This changelog starts from the first visible LayerRail product commits in the repository history.
 
+## Week of July 4-10, 2026
+
+This week focused on VM image availability, AI inference billing safeguards, support identity security, and Kubernetes reliability. LayerRail added current Linux images, made premium model behavior more predictable, and hardened Azure-backed clusters so pods can communicate across nodes without manual network repair.
+
+### New
+
+- **Ubuntu 26.04 LTS and Debian 13 images.** Added Ubuntu 26.04 LTS and Debian 13 to the supported VM image catalog across available compute locations.
+
+### Updated
+
+- **Premium AI model handling.** Premium Azure Foundry models are now classified consistently, require connected billing before use, and record input and output usage for project billing.
+- **AI rate-limit fallback.** Improved premium AI requests so compatible models can fall back when the requested deployment is rate limited, with clearer response metadata and error messages.
+- **Public IPv4 billing.** Standardized public IPv4 usage at a `$3.00` monthly guide price across supported Azure and Linode VM locations.
+- **Verified support identity.** Intercom sessions now use short-lived signed identity tokens so authenticated account details cannot be spoofed through the messenger.
+
+### Fixed
+
+- **Kubernetes pod networking on Azure.** Enabled IP forwarding for Kubernetes network interfaces and added persistent cross-node pod routes so workloads can communicate after provisioning and node restarts.
+- **Kubernetes cgroup consistency.** Aligned kubelet and containerd on the `systemd` cgroup driver for new control-plane and worker nodes, preventing pod sandbox creation failures.
+
+
 ## Week of June 27-July 3, 2026
 
 This week expanded LayerRail beyond core compute, databases, and Kubernetes into a broader cloud platform surface: backups, block volumes, object storage, edge services, monitoring, and a stronger GitHub runners experience. The work also focused on cleaning up production logs, tightening billing coverage, and making the console navigation easier to scan as more products are added.
